@@ -1,0 +1,7 @@
+query Materials {
+    materials {
+        id
+        name
+        consumption
+    }
+}

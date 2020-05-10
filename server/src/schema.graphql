@@ -1,0 +1,88 @@
+type Query {
+  info: String!
+  feed: [Link!]!
+  materials: [Material]
+  material(id: ID): Material
+  result(id: ID): Result
+  gallery: [Result]
+}
+
+type Mutation {
+  post(url: String!, description: String!): Link!
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  updateLink(id: ID!, url: String, description: String): Link
+  deleteLink(id: ID!): Link
+  addMaterial(name: String!, consumption: Float): Material
+  addConsumptionItem(input: ConsumptionInput): ConsumptionItem
+  deleteConsumptionItem(id: ID!): ConsumptionItem
+  addResult: Result
+  deleteResult(id: ID!): Result
+  updateResult(id: ID, title: String, grand_total: Float): Result
+}
+
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+  postedBy: User
+}
+
+type Material {
+    id: ID!
+    name: String!
+    consumption: Float
+}
+
+type ConsumptionItem {
+    id: ID!
+    name: String!
+    area: Float
+    height: Float
+    consumption: Float
+    general_consumption: Float
+    coast: Float
+    includeIn: Result
+}
+
+input ConsumptionInput {
+    name: String!
+    area: Float
+    height: Float
+    consumption: Float
+    general_consumption: Float
+    coast: Float
+    resultID: String
+}
+
+type Result {
+    id: ID!
+    consumption_items: [ConsumptionItem]
+    title: String
+    grand_total: Float
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  links: [Link!]!
+}
+
+type Subscription {
+  newLink: Link,
+}
+
+enum LinkOrderByInput {
+  description_ASC
+  description_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
+}

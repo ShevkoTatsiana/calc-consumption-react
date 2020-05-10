@@ -1,0 +1,39 @@
+type Link {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  description: String!
+  url: String!
+  postedBy: User
+}
+
+type Material {
+    id: ID! @id
+    name: String!
+    consumption: Float
+}
+
+type ConsumptionItem {
+    id: ID! @id
+    name: String!
+    area: Float
+    height: Float
+    consumption: Float
+    general_consumption: Float
+    coast: Float
+    includeIn: Result
+}
+
+type Result {
+    id: ID! @id
+    consumption_items: [ConsumptionItem]
+    title: String
+    grand_total: Float
+}
+
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  password: String!
+  links: [Link!]!
+}

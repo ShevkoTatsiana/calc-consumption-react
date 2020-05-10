@@ -1,0 +1,1 @@
+import {useMaterialsQuery} from './useMaterialsQuery';
