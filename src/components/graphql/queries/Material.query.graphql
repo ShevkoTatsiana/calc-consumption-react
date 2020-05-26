@@ -1,0 +1,7 @@
+query Material($id:ID) {
+    material(id: $id) {
+        id
+        name
+        consumption
+    }
+}

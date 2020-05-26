@@ -1,0 +1,6 @@
+mutation AddMaterialMutation($name: String, $consumption: Float) {
+    addMaterial(name: $name, consumption: $consumption) {
+        name
+        consumption
+    }
+}

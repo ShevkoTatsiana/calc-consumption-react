@@ -1,0 +1,9 @@
+input ConsumptionInput {
+    name: String!
+    area: Float
+    height: Float
+    consumption: Float
+    general_consumption: Float
+    coast: Float
+    resultID: String
+}

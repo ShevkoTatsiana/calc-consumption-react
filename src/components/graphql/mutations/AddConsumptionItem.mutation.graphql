@@ -1,0 +1,11 @@
+mutation AddConsumptionItemMutation($input: ConsumptionInput) {
+    addConsumptionItem(input: $input) {
+        id
+        name
+        area
+        height
+        consumption
+        general_consumption
+        coast
+    }
+}

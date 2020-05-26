@@ -1,0 +1,23 @@
+.menu-panel-component {
+  & {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &-list {
+    display: flex;
+    list-style-type: none;
+    width: 100%;
+    padding: 20px 0;
+    margin: 0;
+  }
+
+  &-item {
+    width: 50%;
+  }
+
+  &-link {
+    padding: 20px 0;
+  }
+}
