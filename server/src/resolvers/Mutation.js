@@ -91,9 +91,6 @@ async function updateResult(parent, args, context, info) {
 }
 
 module.exports = {
-    signup,
-    login,
-    post,
     addMaterial,
     addConsumptionItem,
     addResult,

@@ -4,7 +4,8 @@ import {
     Switch,
     Route,
     Link
-} from "react-router-dom";
+} from 'react-router-dom';
+import { Provider } from 'react-redux'
 import logo from './../../logo.svg';
 import './App.scss';
 import {HomePage} from '../HomePage/HomePage';
@@ -13,7 +14,7 @@ import {ResultPage} from '../ResultPage/ResultPage';
 import {GalleryPage} from '../GalleryPage/GalleryPage';
 import {HeaderComponent} from '../HeaderComponent/HeaderComponent';
 
-function App() {
+export function App() {
   return (
     <div className="App">
       {/*<header className="App-header">*/}

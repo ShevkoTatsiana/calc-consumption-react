@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {noop} from 'lodash';
-import {useRouteMatch} from 'react-router-dom';
 import {NavLink} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {AddNewMaterialComponent} from '../AddNewMaterialFormComponent/AddNewMaterialComponent';
@@ -10,7 +9,6 @@ import {useAddMaterialMutation} from '../hooks/useAddMaterial';
 
 export function MaterialsListComponent(onAddMaterial=noop) {
     const [isShown, setShow] = useState(false);
-    let match = useRouteMatch();
     const q = useMaterialsQuery();
     const [addMaterialMutation] = useAddMaterialMutation();
     if (q.loading) return <div>Loading...</div>;

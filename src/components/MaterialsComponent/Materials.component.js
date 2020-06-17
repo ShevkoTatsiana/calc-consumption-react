@@ -4,6 +4,7 @@ import {MaterialFormComponent} from "../MaterialFormComponent/MaterialForm.compo
 
 export function MaterialsComponent(props) {
     const {onFormSubmit} = props;
+
     return (
         <Route path={`/material/:materialId`}><MaterialFormComponent onFormSubmit={onFormSubmit}/></Route>
     );
