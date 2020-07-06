@@ -1,18 +1,20 @@
 import React from 'react';
-import {MaterialsListComponent} from '../MaterialsListComponent/MaterialsList.component';
+import {MaterialsListContainer} from '../MaterialsListContainer/MaterialsList.container';
 import {MenuPanelComponent} from '../MenuPanelComponent/MenuPanel.component';
+import {MenuPanelContainer} from '../MenuPanelContainer/MenuPanel.container';
 
 import { useSelector } from 'react-redux';
 
 export function HomePage() {
 
-    const resultId = useSelector(state => state);
+    //const resultId = useSelector(state => state);
 
     return (
         <div className="home-page">
             <div>title</div>
-            <MaterialsListComponent/>
-            <MenuPanelComponent resultId={resultId}/>
+            <MaterialsListContainer/>
+            {/*<MenuPanelComponent/>*/}
+            <MenuPanelContainer/>
         </div>
     );
 }

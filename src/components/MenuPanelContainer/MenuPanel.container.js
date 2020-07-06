@@ -1,24 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {MenuPanelComponent} from '../MenuPanelComponent/MenuPanel.component';
 import {useHistory} from 'react-router';
+import {useResultIdClientQuery} from '../hooks/useResultIdClientQuery';
 
 export function MenuPanelContainer(props) {
     const {
         as: Component = MenuPanelComponent,
-        resultId
     } = props;
 
-    const [resultID, setResultID] = useState(resultId);
     const history = useHistory();
+    const {data} = useResultIdClientQuery();
+    const resultId = !!data && data.resultID;
 
     const handleOnResult = () => {
         console.log(resultId);
         if (!!resultId && !!resultId.resultId) {
             history.push(`/result/${resultId.resultId}`);
-            console.log('jjjjj');
         } else {
             history.push(`/no-result`);
-            console.log('jjj');
         }
 
     };
@@ -26,6 +25,6 @@ export function MenuPanelContainer(props) {
     return (
         <Component as={MenuPanelComponent}
                    onResult={handleOnResult}
-                   resultId={resultID}/>
+                   resultId={resultId}/>
     );
 }

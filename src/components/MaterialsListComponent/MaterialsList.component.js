@@ -4,20 +4,17 @@ import {NavLink} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {AddNewMaterialComponent} from '../AddNewMaterialFormComponent/AddNewMaterialComponent';
 
-import {useMaterialsQuery} from '../hooks/useMaterialsQuery';
-import {useAddMaterialMutation} from '../hooks/useAddMaterial';
+export function MaterialsListComponent(props) {
+    const {
+        materials,
+        onAddMaterial = noop
+    } = props;
 
-export function MaterialsListComponent(onAddMaterial=noop) {
     const [isShown, setShow] = useState(false);
-    const q = useMaterialsQuery();
-    const [addMaterialMutation] = useAddMaterialMutation();
-    if (q.loading) return <div>Loading...</div>;
-
-    const {materials} = q.data;
-    const handleOnAddMaterial = async (data) => {
+    const handleOnAddMaterial = (data) => {
         const {name, consumption} = data;
         setShow(false);
-        return await addMaterialMutation(name, parseFloat(consumption));
+        onAddMaterial(name, consumption);
     };
 
 

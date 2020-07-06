@@ -1,0 +1,16 @@
+query Result($id:ID) {
+    result(id: $id) {
+        id
+        consumption_items {
+            id
+            name
+            area
+            height
+            consumption
+            general_consumption
+            coast
+        }
+        title
+        grand_total
+    }
+}

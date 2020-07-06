@@ -1,5 +1,5 @@
 mutation AddResultMutation() {
-    addMaterial() {
+    addResult() {
         id
     }
 }

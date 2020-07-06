@@ -5,8 +5,6 @@ import {
     Route,
     Link
 } from 'react-router-dom';
-import { Provider } from 'react-redux'
-import logo from './../../logo.svg';
 import './App.scss';
 import {HomePage} from '../HomePage/HomePage';
 import {MaterialPage} from '../MaterialPage/MaterialPage';
@@ -17,9 +15,6 @@ import {HeaderComponent} from '../HeaderComponent/HeaderComponent';
 export function App() {
   return (
     <div className="App">
-      {/*<header className="App-header">*/}
-      {/*  <img src={logo} className="App-logo" alt="logo" />*/}
-      {/*</header>*/}
       <Router>
           <div>
               <HeaderComponent/>

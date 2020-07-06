@@ -1,0 +1,4 @@
+# client query which get current Result id from cache
+query ClientResultId {
+    resultID @client
+}

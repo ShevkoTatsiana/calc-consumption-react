@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
 import {MaterialsComponent} from '../MaterialsComponent/Materials.component';
 import {useAddConsumptionItemMutation} from '../hooks/useAddConsumptionItem';
 import {useAddResultMutation} from '../hooks/useAddResult';
-import {addResult} from "../redux/actions";
+import {useResultIdClientQuery} from '../hooks/useResultIdClientQuery';
+import {useAddResultIdClient} from '../hooks/useAddResultIdClient';
 
 export function MaterialsContainer(props) {
     const {
@@ -11,20 +11,21 @@ export function MaterialsContainer(props) {
     } = props;
     const [addConsumptionItemMutation] = useAddConsumptionItemMutation();
     const [addResultMutation] = useAddResultMutation();
-    const result = useSelector(state => state);
-    const dispatch = useDispatch();
+    const [addResultId] = useAddResultIdClient();
+    const {data} = useResultIdClientQuery();
+    const result = !!data && data.resultID;
 
     const handleGetResult = async () => {
         const resp =  await addResultMutation();
-        dispatch(addResult(resp.data.addResult.id));
         return resp.data.addResult.id;
     };
 
     const onFormSubmit = async (data) => {
-        if (!!result && !!result.resultId) {
-            data.resultID = result.resultId;
+        if (!!result) {
+            data.resultID = result;
         } else {
             data.resultID = await handleGetResult();
+            addResultId(data.resultID);
         }
         return await addConsumptionItemMutation(data);
     };

@@ -1,24 +1,19 @@
 import React from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 export function MenuPanelComponent(props) {
     const {
-        onResult,
         resultId
     } = props;
 
-    const resultPath = (!!resultId && !!resultId.resultId) ? (`result/${resultId.resultId}`) : 'result';
+    console.log(resultId);
+    const resultPath = !!resultId ? (`result/${resultId}`) : 'result';
+    console.log(resultPath);
 
     return (
         <div className="menu-panel-component">
             <nav>
                 <ul className="menu-panel-component-list">
-                    {/*<li className="menu-panel-component-item">*/}
-                    {/*    <Link className="menu-panel-component-link"*/}
-                    {/*          onClick={onResult}>*/}
-                    {/*        Result*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
                     <li>
                         <NavLink key={resultId}
                                  to={resultPath}

@@ -16,7 +16,6 @@ export function MaterialFormComponent(props) {
     const {onFormSubmit} = props;
     const defaultWidth = 3;
     let match = useRouteMatch();
-    let p = useParams();
     let { materialId } = useParams();
     const { register, handleSubmit } = useForm();
     const [useArea, setUseArea] = useState(true);
