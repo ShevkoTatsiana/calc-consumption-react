@@ -2,15 +2,14 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from 'react-router-dom';
 import './App.scss';
-import {HomePage} from '../HomePage/HomePage';
-import {MaterialPage} from '../MaterialPage/MaterialPage';
-import {ResultPage} from '../ResultPage/ResultPage';
-import {GalleryPage} from '../GalleryPage/GalleryPage';
-import {HeaderComponent} from '../HeaderComponent/HeaderComponent';
+import {HomePage} from '../Pages/HomePage/HomePage';
+import {MaterialPage} from '../Pages/MaterialPage/MaterialPage';
+import {ResultPage} from '../Pages/ResultPage/ResultPage';
+import {GalleryPage} from '../Pages/GalleryPage/GalleryPage';
+import {HeaderComponent} from '../components/HeaderComponent/HeaderComponent';
 
 export function App() {
   return (
@@ -35,7 +34,6 @@ export function App() {
               </Switch>
           </div>
       </Router>
-      {/*<MaterialsComponent/>*/}
     </div>
   );
 }
