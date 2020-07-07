@@ -10,16 +10,14 @@ export function GalleryContainer(props) {
 
     const q = useGalleryQuery();
     const [deleteResult, {loading: deleteLoading}] = useDeleteResult();
+
+    if (q.loading) return <div>Loading...</div>;
+
     const {gallery} = q.data;
 
     const onDeleteResult = async (resultId) => {
         await deleteResult(resultId);
     };
-
-
-    if (q.loading) return <div>Loading...</div>;
-
-    console.log(q.data);
 
     return (
         <Component as={GalleryComponent}

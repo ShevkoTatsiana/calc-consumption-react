@@ -5,7 +5,7 @@ export function GalleryPage() {
 
     return (
         <div className="gallery-page">
-            <div>Gallery Page</div>
+            <h1>Gallery Page</h1>
             <GalleryContainer/>
         </div>
     );

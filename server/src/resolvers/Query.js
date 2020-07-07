@@ -1,7 +1,3 @@
-function feed(parent, args, context, info) {
-    return context.prisma.links()
-}
-
 function materials(parent, args, context, info) {
     return context.prisma.materials()
 }
@@ -19,9 +15,8 @@ function gallery(parent, args, context, info) {
 }
 
 module.exports = {
-    feed,
     materials,
     material,
     result,
     gallery
-}
+};

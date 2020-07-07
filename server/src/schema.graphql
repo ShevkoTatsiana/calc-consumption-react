@@ -1,6 +1,4 @@
 type Query {
-  info: String!
-  feed: [Link!]!
   materials: [Material]
   material(id: ID): Material
   result(id: ID): Result
@@ -8,11 +6,6 @@ type Query {
 }
 
 type Mutation {
-  post(url: String!, description: String!): Link!
-  signup(email: String!, password: String!, name: String!): AuthPayload
-  login(email: String!, password: String!): AuthPayload
-  updateLink(id: ID!, url: String, description: String): Link
-  deleteLink(id: ID!): Link
   addMaterial(name: String!, consumption: Float): Material
   addConsumptionItem(input: ConsumptionInput): ConsumptionItem
   deleteConsumptionItem(id: ID!): ConsumptionItem
@@ -20,13 +13,6 @@ type Mutation {
   deleteResult(id: ID!): Result
   updateResult(id: ID, title: String, grand_total: Float): Result,
   deleteManyResults: [Result]
-}
-
-type Link {
-  id: ID!
-  description: String!
-  url: String!
-  postedBy: User
 }
 
 type Material {
@@ -61,29 +47,4 @@ type Result {
     consumption_items: [ConsumptionItem]
     title: String
     grand_total: Float
-}
-
-type AuthPayload {
-  token: String
-  user: User
-}
-
-type User {
-  id: ID!
-  name: String!
-  email: String!
-  links: [Link!]!
-}
-
-type Subscription {
-  newLink: Link,
-}
-
-enum LinkOrderByInput {
-  description_ASC
-  description_DESC
-  url_ASC
-  url_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
