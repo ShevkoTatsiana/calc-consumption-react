@@ -1,14 +1,17 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
 import {ResultContainer} from "../../containers/ResultContainer/Result.container";
 import {EmptyResultComponent} from '../EmptyResultComponent/EmptyResult.component';
 
 export function ResultRouteComponent(props) {
+    const {
+        resultId
+    } = props;
+
+    if (!!resultId) {
+        return  <ResultContainer resultId={resultId}/>
+    }
 
     return (
-        <Switch>
-            <Route path={`/result/:resultId`}><ResultContainer/></Route>
-            <Route exact path={`/result`}><EmptyResultComponent/></Route>
-        </Switch>
+        <EmptyResultComponent/>
     );
 }

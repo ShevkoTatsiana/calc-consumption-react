@@ -13,7 +13,6 @@ export function MenuPanelContainer(props) {
     const resultId = !!data && data.resultID;
 
     const handleOnResult = () => {
-        console.log(resultId);
         if (!!resultId && !!resultId.resultId) {
             history.push(`/result/${resultId.resultId}`);
         } else {

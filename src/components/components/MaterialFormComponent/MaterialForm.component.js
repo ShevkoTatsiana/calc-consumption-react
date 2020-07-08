@@ -1,22 +1,19 @@
 import React, {useState} from 'react';
-import {
-    useRouteMatch,
-    useParams
-} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
 import {useMaterialQuery} from '../../hooks/useMaterialQuery';
 
 export function MaterialFormComponent(props) {
-    const {onFormSubmit} = props;
+    const {onFormSubmit, materials} = props;
     const defaultWidth = 3;
-    let match = useRouteMatch();
     let { materialId } = useParams();
+    const currentMaterial = materials.find((item) => item.name === materialId);
     const { register, handleSubmit } = useForm();
     const [useArea, setUseArea] = useState(true);
     const [showConsump, setConsump] = useState('');
     const [showPrice, setPrice] = useState('');
-    const q = useMaterialQuery(materialId);
+    const q = useMaterialQuery(currentMaterial.id);
 
     if (q.loading) return <div>Loading...</div>;
 

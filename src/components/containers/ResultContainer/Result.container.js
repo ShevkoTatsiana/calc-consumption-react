@@ -10,10 +10,11 @@ import {useHistory} from 'react-router';
 
 export function ResultContainer(props) {
     const {
-        as: Component = ResultComponent
+        as: Component = ResultComponent,
+        resultId
     } = props;
 
-    const {resultId} = useParams();
+    //const {resultId} = useParams();
     const q = useResultQuery(resultId);
     const [deleteConsumptionItem, {loading}] = useDeleteConsumptionItemMutation();
     const [updateResultMutation, {loading: loadingTotal}] = useUpdateResultMutation();

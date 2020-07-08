@@ -24,7 +24,7 @@ export function MaterialsListComponent(props) {
             {materials.map((Material) => {
                 return (
                     <NavLink key={Material.id}
-                             to={`material/${Material.id}`}
+                             to={`material/${Material.name}`}
                              className="materials-list-component-link">
                         {Material.name}
                     </NavLink>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {BackComponent} from '../../components/BackComponent/BackComponent';
-import {ResultRouteComponent} from '../../components/ResultRouteComponent/ResultRoute.component';
+import {ResultRouteContainer} from '../../containers/ResultWrapContainer/ResultRoute.container';
 
 export function ResultPage() {
 
@@ -8,7 +8,7 @@ export function ResultPage() {
         <div className="result-page">
             <BackComponent/>
             <h1>Result Page</h1>
-            <ResultRouteComponent/>
+            <ResultRouteContainer/>
         </div>
     );
 }
