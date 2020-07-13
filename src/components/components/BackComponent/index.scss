@@ -1,0 +1,20 @@
+@import '../../../styles/variables';
+
+.back-component {
+  & {
+    margin: 0 -$m-primary;
+    padding: $p-primary;
+    border-bottom: 2px solid $border-primary-color;
+    background-image: url('img/arrow.svg');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: $p-primary center;
+  }
+
+  &-link {
+    padding-left: 35px;
+    color: $border-primary-color;
+    text-decoration: none;
+    font-size: 16px;
+  }
+}

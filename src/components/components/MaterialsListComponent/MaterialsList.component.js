@@ -20,7 +20,6 @@ export function MaterialsListComponent(props) {
 
     return (
         <div className="materials-list-component">
-        <div>Materials</div>
             {materials.map((Material) => {
                 return (
                     <NavLink key={Material.id}
@@ -30,14 +29,16 @@ export function MaterialsListComponent(props) {
                     </NavLink>
                 )
             })}
-            <Button className="materials-list-component-button"
+            <Button className="materials-list-component-button button button-secondary"
                     onClick={()=>setShow(!isShown)}>Add New Material</Button>
             {isShown && (
-                <>
-                    <Button className="materials-list-component-close"
-                            onClick={()=>setShow(!isShown)}>X</Button>
-                    <AddNewMaterialComponent onAddMaterial={handleOnAddMaterial}/>
-                </>
+                <div className="materials-list-component-wrap">
+                    <div className="materials-list-component-add">
+                        <Button className="materials-list-component-close"
+                                onClick={()=>setShow(!isShown)}>X</Button>
+                        <AddNewMaterialComponent onAddMaterial={handleOnAddMaterial}/>
+                    </div>
+                </div>
             )}
         </div>
     );

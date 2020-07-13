@@ -1,9 +1,21 @@
+@import '../../../styles/variables';
+
 .header-component {
-  padding: 20px;
-  border-bottom: 2px solid black;
-  background-image: url('img/construction-and-tools.svg');
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: 30px center;
-  text-align: center;
+  & {
+    padding: $p-primary;
+    background-image: url('img/construction-and-tools.svg');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: 30px center;
+    text-align: center;
+    background-color: $header-background-color;
+    color: $light;
+  }
+
+  &-title {
+    color: $light;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 20px;
+  }
 }

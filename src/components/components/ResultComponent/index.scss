@@ -1,0 +1,26 @@
+@import '../../../styles/variables';
+
+.result-component {
+  &-total {
+    margin-bottom: $m-secondary;
+  }
+
+  &-total-title {
+    padding-right: $p-secondary;
+    font-weight: bolder;
+  }
+
+  &-input {
+    padding: $p-secondary;
+    margin: 0 $m-secondary $m-secondary;
+  }
+
+  &-save .button {
+    margin-bottom: $m-secondary;
+  }
+
+  &-save-note {
+    padding-bottom: $p-secondary;
+    font-size: 12px;
+  }
+}

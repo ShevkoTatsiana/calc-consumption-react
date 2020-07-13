@@ -1,6 +1,7 @@
 import React from 'react';
 import {get} from 'lodash';
 import {MaterialsComponent} from '../../components/MaterialsComponent/Materials.component';
+import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 import {useAddConsumptionItemMutation} from '../../hooks/useAddConsumptionItem';
 import {useAddResultMutation} from '../../hooks/useAddResult';
 import {useResultIdClientQuery} from '../../hooks/useResultIdClientQuery';
@@ -18,7 +19,7 @@ export function MaterialsContainer(props) {
     const {data} = useResultIdClientQuery();
     const result = !!data && data.resultID;
 
-    if (q.loading) return <div>Loading...</div>;
+    if (q.loading) return <LoaderComponent/>;
     const materials = get(q, 'data.materials');
 
     const handleGetResult = async () => {

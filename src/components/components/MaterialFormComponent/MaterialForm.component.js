@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
 import {useMaterialQuery} from '../../hooks/useMaterialQuery';
+import {LoaderComponent} from '../LoaderComponent/Loader.component';
 
 export function MaterialFormComponent(props) {
     const {onFormSubmit, materials} = props;
@@ -11,11 +12,11 @@ export function MaterialFormComponent(props) {
     const currentMaterial = materials.find((item) => item.name === materialId);
     const { register, handleSubmit } = useForm();
     const [useArea, setUseArea] = useState(true);
-    const [showConsump, setConsump] = useState('');
-    const [showPrice, setPrice] = useState('');
+    const [showConsump, setConsump] = useState('not calculated yet');
+    const [showPrice, setPrice] = useState('not calculated yet');
     const q = useMaterialQuery(currentMaterial.id);
 
-    if (q.loading) return <div>Loading...</div>;
+    if (q.loading) return <LoaderComponent/>;
 
     const {material} = q.data;
 
@@ -47,12 +48,13 @@ export function MaterialFormComponent(props) {
     };
 
     return (
-        <div className="material-component">
-            <h2 className="material-component-title">Calc consumption of {material.name}</h2>
+        <div className="material-form-component">
+            <h2 className="material-form-component-title">Calc consumption of {material.name}</h2>
             <form onSubmit={handleSubmit(onCalcMaterial)}>
                 {useArea ? (
-                    <div>
-                        <label htmlFor="area">Area, m<span>2</span></label>
+                    <div className="material-form-component-element">
+                        <label htmlFor="area"
+                               className="material-form-component-element-label">Area, m<span>2</span></label>
                         <input
                             name="area"
                             placeholder="area"
@@ -60,14 +62,17 @@ export function MaterialFormComponent(props) {
                         />
                     </div>
                 ) : (
-                    <div>
-                        <label htmlFor="width">Width, m</label>
+                    <div className="material-form-component-element">
+                        <label htmlFor="width"
+                               className="material-form-component-element-label">Width, m</label>
                         <input
                             name="width"
                             placeholder="width"
                             ref={register({ required: true })}
                         />
-                        <label htmlFor="length">Length, m</label>
+                        <br/>
+                        <label htmlFor="length"
+                               className="material-form-component-element-label">Length, m</label>
                         <input
                             name="length"
                             placeholder="length"
@@ -75,19 +80,22 @@ export function MaterialFormComponent(props) {
                         />
                     </div>
                 )}
-                <Button onClick={()=>setUseArea(!useArea)}>
+                <Button onClick={()=>setUseArea(!useArea)}
+                        className="button button-tertiary">
                     Toggle to use Width and Length instead of Area
                 </Button>
-                <div>
-                    <label htmlFor="height">Height, m</label>
+                <div className="material-form-component-element">
+                    <label htmlFor="height"
+                           className="material-form-component-element-label">Height, m</label>
                     <input
                         name="height"
                         placeholder="Height"
                         ref={register()}
                     />
                 </div>
-                <div>
-                    <label htmlFor="consumption">Consumption per 1m<span>2</span></label>
+                <div className="material-form-component-element">
+                    <label htmlFor="consumption"
+                           className="material-form-component-element-label">Consumption per 1m<span>2</span></label>
                     <input
                         name="consumption"
                         placeholder="Consumption"
@@ -95,19 +103,21 @@ export function MaterialFormComponent(props) {
                         ref={register({ required: true })}
                     />
                 </div>
-                <div>
-                    <label htmlFor="price">Price</label>
+                <div className="material-form-component-element">
+                    <label htmlFor="price"
+                           className="material-form-component-element-label">Price</label>
                     <input
                         name="price"
                         placeholder="Price"
                         ref={register()}
                     />
                 </div>
-                <Button type="submit">Calc Consumption</Button>
+                <Button type="submit"
+                        className="button button-secondary">Calc Consumption</Button>
             </form>
             <div className="material-component-result">
-                <div className="material-component-result-consumption">Total Consumption: {showConsump}</div>
-                <div className="material-component-result-price">Total Price: {showPrice}</div>
+                <div className="material-component-result-consumption">Total Consumption: <span className="total">{showConsump}</span></div>
+                <div className="material-component-result-price">Total Price: <span className="total">{showPrice}</span></div>
             </div>
         </div>
     );

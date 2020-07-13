@@ -11,24 +11,26 @@ export function AddNewMaterialComponent(props) {
     return (
         <div className="add-new-material-form-component">
             <form onSubmit={handleSubmit(onAddMaterial)}>
-                <div>
-                    <label htmlFor="name">Material Name</label>
+                <div className="add-new-material-form-component-row">
+                    <label htmlFor="name"
+                           className="add-new-material-form-component-label">Material Name</label>
                     <input
                         name="name"
                         placeholder="material name"
                         ref={register({ required: true })}
                     />
                 </div>
-
-                <div>
-                    <label htmlFor="consumption">Consumption</label>
+                <div className="add-new-material-form-component-row">
+                    <label htmlFor="consumption"
+                           className="add-new-material-form-component-label">Consumption</label>
                     <input
                         name="consumption"
                         placeholder="Consumption"
                         ref={register({ required: true })}
                     />
                 </div>
-                <button type="submit">Save Material</button>
+                <button type="submit"
+                        className="button button-secondary">Save Material</button>
             </form>
         </div>
     );

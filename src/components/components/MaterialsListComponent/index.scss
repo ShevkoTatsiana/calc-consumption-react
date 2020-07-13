@@ -1,13 +1,50 @@
+@import '../../../styles/variables';
+
 .materials-list-component {
   & {
-
+    margin: $m-primary 0;
   }
 
   &-link {
     display: block;
+    text-align: center;
+    text-decoration: none;
+    color: $link-color;
+
+    &:hover {
+      color: $link-hover-color;
+    }
   }
 
   &-button {
     display: block;
+    margin-top: $m-primary;
+  }
+
+  &-wrap {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  &-add {
+    padding: $p-primary;
+    background-color: $light;
+  }
+
+  &-close {
+    display: flex;
+    margin-left: auto;
+    margin-bottom: $m-secondary;
+    background-color: #bfaa30;
+    border-color: #bfaa30;
+    border-radius: 5px;
   }
 }

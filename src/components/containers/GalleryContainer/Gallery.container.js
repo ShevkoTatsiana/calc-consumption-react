@@ -1,5 +1,6 @@
 import React from 'react';
 import {GalleryComponent} from '../../components/GalleryComponent/Gallery.component';
+import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 import {useGalleryQuery} from '../../hooks/useGalleryQuery';
 import {useDeleteResult} from '../../hooks/useDeleteResult';
 
@@ -11,7 +12,7 @@ export function GalleryContainer(props) {
     const q = useGalleryQuery();
     const [deleteResult, {loading: deleteLoading}] = useDeleteResult();
 
-    if (q.loading) return <div>Loading...</div>;
+    if (q.loading) return <LoaderComponent/>;
 
     const {gallery} = q.data;
 

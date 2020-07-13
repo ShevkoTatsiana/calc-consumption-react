@@ -17,21 +17,22 @@ export function App() {
       <Router>
           <div>
               <HeaderComponent/>
-
-              <Switch>
-                  <Route path="/material">
-                      <MaterialPage/>
-                  </Route>
-                  <Route path="/result">
-                      <ResultPage/>
-                  </Route>
-                  <Route path="/gallery">
-                      <GalleryPage/>
-                  </Route>
-                  <Route path="/">
-                      <HomePage/>
-                  </Route>
-              </Switch>
+              <div className="app-content">
+                  <Switch>
+                      <Route path="/material">
+                          <MaterialPage/>
+                      </Route>
+                      <Route path="/result">
+                          <ResultPage/>
+                      </Route>
+                      <Route path="/gallery">
+                          <GalleryPage/>
+                      </Route>
+                      <Route path="/">
+                          <HomePage/>
+                      </Route>
+                  </Switch>
+              </div>
           </div>
       </Router>
     </div>

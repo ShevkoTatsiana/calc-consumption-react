@@ -21,7 +21,7 @@ export function ResultTableComponent(props) {
                         <td>Name</td>
                         <td>S, m2</td>
                         <td>h, m</td>
-                        <td>Consumption</td>
+                        <td>Cons.</td>
                         <td>Total</td>
                         <td>Action</td>
                     </tr>
@@ -32,12 +32,13 @@ export function ResultTableComponent(props) {
                     <tr key={item.id}>
                         <td>{index + 1}</td>
                         <td>{item.name}</td>
-                        <td>{item.area}</td>
+                        <td>{item.area.toFixed(2)}</td>
                         <td>{item.height}</td>
                         <td>{item.general_consumption}</td>
                         <td>{item.coast}</td>
                         <td>
-                            <Button onClick={()=>handleOnDelete(item.id)}>Delete</Button>
+                            <Button onClick={()=>handleOnDelete(item.id)}
+                                    className="button button-tertiary">Delete</Button>
                         </td>
                     </tr>
                 )

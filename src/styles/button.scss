@@ -1,0 +1,50 @@
+@import './variables';
+
+.button {
+  & {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bolder;
+  }
+
+  &-primary {
+
+  }
+
+  &-secondary {
+    background-color: #ffd900;
+    border-color: #ffd900;
+    color: $link-color;
+
+    &:hover {
+      background-color: #ffd773;
+    }
+  }
+
+  &-tertiary {
+    background-color: $light;
+    border: 1px solid $link-color;
+    color: $link-color;
+
+    &:hover {
+      border: 1px solid $link-color;
+      background-color: $link-color;
+      color: $light;
+      outline: none;
+    }
+  }
+
+  &-tertiary-reverse {
+    border: 1px solid $link-color;
+    background-color: $link-color;
+    color: $light;
+
+    &:hover {
+      background-color: $light;
+      border: 1px solid $link-color;
+      color: $link-color;
+      outline: none;
+    }
+  }
+}

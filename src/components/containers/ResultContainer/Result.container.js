@@ -1,12 +1,12 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {useHistory} from 'react-router';
 import {ResultComponent} from '../../components/ResultComponent/Result.component';
 import {useResultQuery} from '../../hooks/useResultQuery';
 import {useDeleteConsumptionItemMutation} from '../../hooks/useDeleteConsumptionItem';
 import {useUpdateResultMutation} from '../../hooks/useUpdateResult';
 import {useAddResultIdClient} from '../../hooks/useAddResultIdClient';
 import {useDeleteResult} from '../../hooks/useDeleteResult';
-import {useHistory} from 'react-router';
+import {LoaderComponent} from "../../components/LoaderComponent/Loader.component";
 
 export function ResultContainer(props) {
     const {
@@ -14,7 +14,6 @@ export function ResultContainer(props) {
         resultId
     } = props;
 
-    //const {resultId} = useParams();
     const q = useResultQuery(resultId);
     const [deleteConsumptionItem, {loading}] = useDeleteConsumptionItemMutation();
     const [updateResultMutation, {loading: loadingTotal}] = useUpdateResultMutation();
@@ -59,7 +58,7 @@ export function ResultContainer(props) {
     };
 
 
-    if (q.loading) return <div>Loading...</div>;
+    if (q.loading) return <LoaderComponent/>;
 
     return (
         <Component as={ResultComponent}

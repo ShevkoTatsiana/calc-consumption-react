@@ -4,6 +4,7 @@ import {noop, get} from 'lodash';
 import {useMaterialsQuery} from '../../hooks/useMaterialsQuery';
 import {useAddMaterialMutation} from '../../hooks/useAddMaterial';
 import {MaterialsListComponent} from '../../components/MaterialsListComponent/MaterialsList.component';
+import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 
 export function MaterialsListContainer(props) {
     const {
@@ -14,7 +15,7 @@ export function MaterialsListContainer(props) {
     const q = useMaterialsQuery();
     const [addMaterialMutation] = useAddMaterialMutation();
 
-    if (q.loading) return <div>Loading...</div>;
+    if (q.loading) return <LoaderComponent/>;
     if (q.error) return <div>Error</div>;
 
     const materials = get(q, 'data.materials');

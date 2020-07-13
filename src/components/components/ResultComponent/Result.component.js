@@ -35,7 +35,7 @@ export function ResultComponent(props) {
             <ResultTableComponent consumption_items={consumption_items}
                                   onDeleteItem={onDeleteItem}/>
             <div className="result-component-total">
-                <span>Grand Total:</span>
+                <span className="result-component-total-title">Grand Total:</span>
                 {!!resultGrandTotal ? (
                     <span>{resultGrandTotal}</span>
                 ) : (
@@ -43,16 +43,23 @@ export function ResultComponent(props) {
                 )}
             </div>
             <div className="result-component-save">
-                <Button onClick={handleOnAddTitle}>Add Title</Button>
+                <div className="result-component-save-note">
+                    To add or update Result Title please fill in an Input field and press Add button
+                </div>
+                <Button onClick={handleOnAddTitle}
+                        className="button button-tertiary">Add Title</Button>
                 <Form.Control
                     type="text"
                     placeholder="Result Title"
                     name="title"
                     ref={ref}
+                    className="result-component-input"
                 />
-                <Button onClick={onSave}>Save to the Gallery</Button>
+                <Button onClick={onSave}
+                        className="button button-secondary">Save to the Gallery</Button>
             </div>
-            <Button onClick={onDeleteResult}>Delete Result</Button>
+            <Button onClick={onDeleteResult}
+                    className="button button-tertiary-reverse">Delete Result</Button>
         </div>
     );
 }

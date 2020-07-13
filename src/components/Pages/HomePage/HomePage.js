@@ -6,7 +6,8 @@ export function HomePage() {
 
     return (
         <div className="home-page">
-            <div>title</div>
+            <h2 className="home-page-title">Materials</h2>
+            <div className="home-page-text">You can choose material from the list below or to add a new one</div>
             <MaterialsListContainer/>
             <MenuPanelContainer/>
         </div>

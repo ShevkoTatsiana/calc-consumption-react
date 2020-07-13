@@ -1,2 +1,13 @@
-@import "../components/HeaderComponent/index";
+@import '../../styles/variables';
+@import '../../styles/button';
+@import '../components/LoaderComponent/index';
+@import '../components/HeaderComponent/index';
+@import '../components/BackComponent/index';
 @import '../Pages/HomePage/index';
+@import '../Pages/MaterialPage/index';
+@import '../Pages/ResultPage/index';
+@import '../Pages/GalleryPage/index';
+
+.app-content {
+  padding: $p-primary;
+}

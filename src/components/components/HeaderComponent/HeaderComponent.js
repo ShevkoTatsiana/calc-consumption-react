@@ -5,7 +5,7 @@ export function HeaderComponent() {
 
     return (
         <div className="header-component">
-            <Link to="/">Repair Cost Calculator</Link>
+            <Link to="/" className="header-component-title">Repair Cost Calculator</Link>
         </div>
     );
 }
