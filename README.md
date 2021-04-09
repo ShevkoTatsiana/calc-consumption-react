@@ -1,4 +1,4 @@
-## Available Scripts
+## An Idea
 
 The main idea of this App is to allow user calculate what number of finishing materials he needs.
 There is a list with predefined materials, or you can add you own to it. The user can display
