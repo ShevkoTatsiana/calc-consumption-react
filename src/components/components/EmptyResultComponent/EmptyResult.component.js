@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-export function EmptyResultComponent(props) {
+export function EmptyResultComponent() {
     return (
-        <div>Sorry, you don't have any active result</div>
+        <div data-testid="empty-result">Sorry, you don't have any active result</div>
     );
 }

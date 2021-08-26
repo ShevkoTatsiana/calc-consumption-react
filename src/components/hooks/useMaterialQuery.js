@@ -1,7 +1,7 @@
 import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 //import MATERIAL from '../graphql/queries/Material.query.graphql';
-const MATERIAL = gql`
+export const MATERIAL = gql`
     query Material($id:ID) {
         material(id: $id) {
             id

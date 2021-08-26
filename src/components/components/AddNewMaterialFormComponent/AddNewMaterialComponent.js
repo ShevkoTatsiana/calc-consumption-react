@@ -6,7 +6,8 @@ export function AddNewMaterialComponent(props) {
     const {
         onAddMaterial = noop
     } = props;
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, errors } = useForm();
+    const errorMessage = "Please enter a value";
 
     return (
         <div className="add-new-material-form-component">
@@ -16,9 +17,20 @@ export function AddNewMaterialComponent(props) {
                            className="add-new-material-form-component-label">Material Name</label>
                     <input
                         name="name"
+                        id="name"
                         placeholder="material name"
-                        ref={register({ required: true })}
+                        ref={register({
+                            required: true,
+                            minLength: {
+                                value: 2,
+                                message: "min length is 2"
+                            }
+                        })}
                     />
+                    {!!errors && errors.name && <span role="alert"
+                                                      className="add-new-material-form-component-error">
+                        {errorMessage}
+                    </span>}
                 </div>
                 <div className="add-new-material-form-component-row">
                     <label htmlFor="consumption"
@@ -26,8 +38,13 @@ export function AddNewMaterialComponent(props) {
                     <input
                         name="consumption"
                         placeholder="Consumption"
-                        ref={register({ required: true })}
+                        id="consumption"
+                        ref={register({required: true})}
                     />
+                    {!!errors && errors.consumption && <span role="alert"
+                                                      className="add-new-material-form-component-error">
+                        {errorMessage}
+                    </span>}
                 </div>
                 <button type="submit"
                         className="button button-secondary">Save Material</button>

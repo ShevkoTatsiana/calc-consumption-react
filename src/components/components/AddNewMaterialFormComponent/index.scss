@@ -2,15 +2,26 @@
 @import '../../../styles/button';
 
 .add-new-material-form-component {
+  $error-message-bottom: 5px;
+
   & {
     padding: $p-primary;
   }
 
   &-row {
-    padding-bottom: $p-secondary;
+    position: relative;
+    padding-bottom: $p-primary;
   }
 
   &-label {
     padding-right: $p-secondary;
+  }
+
+  &-error {
+    position: absolute;
+    left: 0;
+    bottom: $error-message-bottom;
+    font-size: 12px;
+    color: $error-color;
   }
 }
