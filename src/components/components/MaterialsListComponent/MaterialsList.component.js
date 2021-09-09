@@ -6,7 +6,7 @@ import {AddNewMaterialComponent} from '../AddNewMaterialFormComponent/AddNewMate
 
 export function MaterialsListComponent(props) {
     const {
-        materials,
+        materials = [],
         onAddMaterial = noop
     } = props;
 
@@ -20,15 +20,21 @@ export function MaterialsListComponent(props) {
 
     return (
         <div className="materials-list-component">
-            {materials.map((Material) => {
-                return (
-                    <NavLink key={Material.id}
-                             to={`material/${Material.name}`}
-                             className="materials-list-component-link">
-                        {Material.name}
-                    </NavLink>
-                )
-            })}
+            {materials.length ? (
+                <>
+                    {materials.map((Material) => {
+                        return (
+                            <NavLink key={Material.id}
+                                     to={`material/${Material.name}`}
+                                     className="materials-list-component-link">
+                                {Material.name}
+                            </NavLink>
+                        )
+                    })}
+                </>
+            ) : (
+                <div className="materials-list-component-empty">There are no saved materials yet</div>
+            )}
             <Button className="materials-list-component-button button button-secondary"
                     onClick={()=>setShow(!isShown)}>Add New Material</Button>
             {isShown && (

@@ -42,19 +42,23 @@ const mocks = [
     },
 ];
 
-describe("MaterialContainer", () => {
+describe("MaterialsComponent", () => {
     afterEach(cleanup);
 
     it('renders without crashing', async ()=> {
         const history = createMemoryHistory();
         const route = '/material/Śnieżka';
         history.push(route);
-        render(
-            <MockedProvider mocks={mocks} addTypename={false}>
-                <Router history={createMemoryHistory({ initialEntries: [route] })}>
-                    <MaterialsComponent materials={mockedMaterials}/>
-                </Router>
-            </MockedProvider>
-        );
+        await act(async () => {
+            await render(
+                <MockedProvider mocks={mocks} addTypename={false}>
+                    <Router history={createMemoryHistory({ initialEntries: [route] })}>
+                        <MaterialsComponent materials={mockedMaterials}/>
+                    </Router>
+                </MockedProvider>
+            );
+
+        });
+
     });
 });

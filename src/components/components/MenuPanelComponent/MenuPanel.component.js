@@ -6,15 +6,12 @@ export function MenuPanelComponent(props) {
         resultId
     } = props;
 
-    const resultPath = !!resultId ? (`result/${resultId}`) : 'result';
-
     return (
         <div className="menu-panel-component">
             <nav>
                 <ul className="menu-panel-component-list">
                     <li className="menu-panel-component-item">
                         <NavLink key={resultId}
-                                 //to={resultPath}
                             to="/result"
                                  className="menu-panel-component-link">
                             Result

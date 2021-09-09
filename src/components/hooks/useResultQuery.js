@@ -1,6 +1,6 @@
 import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-const RESULT = gql`
+export const RESULT = gql`
     query Result($id:ID) {
     result(id: $id) {
         id

@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {ResultTableComponent} from '../ResultTableComponent/ResultTable.component';
+import {LoaderComponent} from '../LoaderComponent/Loader.component';
 
 export function ResultComponent(props) {
     const {
@@ -18,7 +19,7 @@ export function ResultComponent(props) {
 
     const {consumption_items, title} = result;
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <LoaderComponent/>;
 
     const handleOnAddTitle = () => {
         onAddTitle(ref.current.value);
@@ -37,9 +38,9 @@ export function ResultComponent(props) {
             <div className="result-component-total">
                 <span className="result-component-total-title">Grand Total:</span>
                 {!!resultGrandTotal ? (
-                    <span>{resultGrandTotal}</span>
+                    <span className="result-component-total-value">{resultGrandTotal}</span>
                 ) : (
-                    <span>Not calculated yet</span>
+                    <span className="result-component-total-value">Not calculated yet</span>
                 )}
             </div>
             <div className="result-component-save">
@@ -47,7 +48,7 @@ export function ResultComponent(props) {
                     To add or update Result Title please fill in an Input field and press Add button
                 </div>
                 <Button onClick={handleOnAddTitle}
-                        className="button button-tertiary">Add Title</Button>
+                        className="button button-tertiary result-component-add-action">Add Title</Button>
                 <Form.Control
                     type="text"
                     placeholder="Result Title"
@@ -56,10 +57,10 @@ export function ResultComponent(props) {
                     className="result-component-input"
                 />
                 <Button onClick={onSave}
-                        className="button button-secondary">Save to the Gallery</Button>
+                        className="button button-secondary result-component-save-action">Save to the Gallery</Button>
             </div>
             <Button onClick={onDeleteResult}
-                    className="button button-tertiary-reverse">Delete Result</Button>
+                    className="button button-tertiary-reverse result-component-delete-action">Delete Result</Button>
         </div>
     );
 }

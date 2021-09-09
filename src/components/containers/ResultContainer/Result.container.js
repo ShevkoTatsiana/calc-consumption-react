@@ -14,13 +14,17 @@ export function ResultContainer(props) {
         resultId
     } = props;
 
+    const history = useHistory();
     const q = useResultQuery(resultId);
     const [deleteConsumptionItem, {loading}] = useDeleteConsumptionItemMutation();
     const [updateResultMutation, {loading: loadingTotal}] = useUpdateResultMutation();
     const [addResultId] = useAddResultIdClient();
     const [deleteResult] = useDeleteResult();
-    const {result} = q.data;
-    const history = useHistory();
+
+    if (q.loading || loading || loadingTotal) return <LoaderComponent/>;
+    if (q.error) return <div>Error</div>;
+
+    const {result} = q?.data;
     const calcGrand = (items) => items.reduce((total, item) => item.coast + total, 0);
 
 
@@ -56,9 +60,6 @@ export function ResultContainer(props) {
         await replaceResultId();
         history.push(`/`);
     };
-
-
-    if (q.loading) return <LoaderComponent/>;
 
     return (
         <Component as={ResultComponent}

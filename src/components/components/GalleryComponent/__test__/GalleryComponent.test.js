@@ -88,7 +88,7 @@ describe("GalleryComponent", () => {
         expect(table1.querySelectorAll('tbody td')[3]).toHaveTextContent(mockedGallery[0].consumption_items[0].coast);
         expect(table1.querySelectorAll('tbody td')[5]).toHaveTextContent(mockedGallery[0].grand_total);
         expect(screen.getAllByRole('heading')[0]).toHaveTextContent(mockedGallery[0].title);
-        expect(screen.getAllByRole('heading')[1]).toHaveTextContent(mockedGallery[1].title)
+        expect(screen.getAllByRole('heading')[1]).toHaveTextContent(mockedGallery[1].title);
     });
 
     it("should remove a table when button is clicked", async () => {

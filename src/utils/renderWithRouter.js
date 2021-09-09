@@ -2,7 +2,6 @@ import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import {render} from '@testing-library/react';
-import { MockedProvider } from '@apollo/client/testing';
 
 export function renderWithRouterMatch(
     ui,
