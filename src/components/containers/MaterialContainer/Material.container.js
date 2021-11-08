@@ -11,8 +11,9 @@ export function MaterialContainer(props) {
         onFormSubmit
     } = props;
     let { materialId } = useParams();
+
     const currentMaterial = materials.find((item) => item.name === materialId);
-    const q = useMaterialQuery(currentMaterial.id);
+    const q = useMaterialQuery(currentMaterial?.id);
 
     if (q.loading) return <LoaderComponent/>;
     if (q.error) return <div>Something went wrong</div>;

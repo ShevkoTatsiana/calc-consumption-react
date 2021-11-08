@@ -136,7 +136,11 @@ export function MaterialFormComponent(props) {
                         className="button button-secondary">Calc Consumption</Button>
             </form>
             <div className="material-component-result">
-                <div className="material-component-result-consumption">Total Consumption: <span className="total">{showConsump}</span></div>
+                <div className="material-component-result-consumption">
+                    Total Consumption:
+                    <span className="total">
+                    {showConsump}</span>
+                </div>
                 <div className="material-component-result-price">Total Price: <span className="total">{showPrice}</span></div>
             </div>
         </div>

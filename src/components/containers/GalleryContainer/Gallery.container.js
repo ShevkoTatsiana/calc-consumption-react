@@ -12,7 +12,8 @@ export function GalleryContainer(props) {
     const q = useGalleryQuery();
     const [deleteResult, {loading: deleteLoading}] = useDeleteResult();
 
-    if (q.loading) return <LoaderComponent/>;
+    if (q.loading || deleteLoading) return <LoaderComponent/>;
+    if (q.error) return <div>Something went wrong</div>;
 
     const {gallery} = q.data;
 
@@ -23,7 +24,7 @@ export function GalleryContainer(props) {
     return (
         <Component as={GalleryComponent}
                    gallery={gallery}
-                   loading={deleteLoading}
+                   loading={deleteLoading || deleteLoading}
                    onDeleteResult={onDeleteResult}/>
     );
 }

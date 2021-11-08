@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Router, Route, MemoryRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import {render, cleanup, fireEvent, waitFor, screen, act, wait} from '@testing-library/react';
+import {render, cleanup, act} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MutationObserver from '@sheerun/mutationobserver-shim';
 import { MockedProvider } from '@apollo/react-testing';

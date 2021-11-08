@@ -1,6 +1,6 @@
 import {useMutation} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-const DELETE_RESULT = gql`
+export const DELETE_RESULT = gql`
     mutation DeleteResult($id: ID!) {
     deleteResult(id: $id) {
         id
