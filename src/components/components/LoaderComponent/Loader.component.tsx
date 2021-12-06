@@ -2,7 +2,7 @@ import React from 'react';
 
 import Spinner from 'react-bootstrap/Spinner'
 
-export function LoaderComponent() {
+export const LoaderComponent: React.FunctionComponent = () => {
     return (
         <div className="loader-component"
              data-testid="loader-component">

@@ -11,7 +11,7 @@ import {ResultPage} from '../Pages/ResultPage/ResultPage';
 import {GalleryPage} from '../Pages/GalleryPage/GalleryPage';
 import {HeaderComponent} from '../components/HeaderComponent/HeaderComponent';
 
-export function App() {
+export const App : React.FunctionComponent = () => {
   return (
     <div className="App">
       <Router>

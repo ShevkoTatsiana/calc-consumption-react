@@ -5,8 +5,19 @@ import {useMaterialsQuery} from '../../hooks/useMaterialsQuery';
 import {useAddMaterialMutation} from '../../hooks/useAddMaterial';
 import {MaterialsListComponent} from '../../components/MaterialsListComponent/MaterialsList.component';
 import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
+import {MaterialsListComponentProps} from "../../components/MaterialsListComponent/MaterialsList.component";
+import {AddMaterialMutationMutation, AddMaterialMutationMutationVariables} from "../../../generated/graphql";
 
-export function MaterialsListContainer(props) {
+interface MaterialsListContainerProps {
+    as?: React.FunctionComponent<MaterialsListComponentProps>,
+    onAddMaterial: () => void
+}
+
+interface AddMateProp {
+    addMaterialMutation: (name: string, cons: number) => Promise<AddMaterialMutationMutationVariables>
+}
+
+export const MaterialsListContainer: React.FunctionComponent<MaterialsListContainerProps> = (props: MaterialsListContainerProps) => {
     const {
         as: Component = MaterialsListComponent,
         onAddMaterial = noop
@@ -19,8 +30,9 @@ export function MaterialsListContainer(props) {
     if (q.error) return <div>Error</div>;
 
     const materials = get(q, 'data.materials');
-    const handleOnAddMaterial = async (name, consumption) => {
-        const resp =  await addMaterialMutation(name, parseFloat(consumption));
+    const handleOnAddMaterial = async (name:string, consumption: number) => {
+        // @ts-ignore
+        const resp =  await addMaterialMutation(name, consumption);
         onAddMaterial();
         return resp;
     };

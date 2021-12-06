@@ -4,7 +4,31 @@ import Form from 'react-bootstrap/Form';
 import {ResultTableComponent} from '../ResultTableComponent/ResultTable.component';
 import {LoaderComponent} from '../LoaderComponent/Loader.component';
 
-export function ResultComponent(props) {
+export interface ConsumptionItem {
+    id: string,
+    name: string,
+    area: number,
+    height: number,
+    consumption: number,
+    general_consumption: number,
+    coast: number
+}
+export interface Result {
+    id: string,
+    title: string,
+    consumption_items: ConsumptionItem[]
+}
+interface ResultComponentProps {
+    result: Result,
+    onDeleteItem: (value: string) => void,
+    loading: boolean,
+    onSave: () => void,
+    resultGrandTotal: number,
+    onAddTitle: (value: string) => void,
+    onDeleteResult: () => void
+}
+
+export const ResultComponent: React.FunctionComponent<ResultComponentProps> = (props: ResultComponentProps) => {
     const {
         result,
         onDeleteItem,
@@ -15,13 +39,14 @@ export function ResultComponent(props) {
         onDeleteResult
     } = props;
 
-    const ref = useRef();
+    const ref = useRef<HTMLInputElement>(null);
 
     const {consumption_items, title} = result;
 
     if (loading) return <LoaderComponent/>;
 
     const handleOnAddTitle = () => {
+        if(!ref.current) return;
         onAddTitle(ref.current.value);
     };
 

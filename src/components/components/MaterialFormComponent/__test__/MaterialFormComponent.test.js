@@ -77,7 +77,7 @@ describe("MaterialFormComponent", () => {
         document.querySelectorAll('.button-tertiary')[0].click();
         const form = document.forms[0];
         const widthInput = form.elements['width'];
-        const lengthInput = form.elements['lengthInput'];
+        const lengthInput = form.elements['length'];
         const consumtionInput = form.elements['consumption'];
         const consTotal = document.querySelectorAll('.material-component-result-consumption .total')[0];
         const priceTotal = document.querySelectorAll('.material-component-result-price .total')[0];

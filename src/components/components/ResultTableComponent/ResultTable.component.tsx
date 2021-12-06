@@ -2,13 +2,20 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-export function ResultTableComponent(props) {
+import {ConsumptionItem} from '../ResultComponent/Result.component';
+
+interface ResultTableComponentProps {
+    consumption_items: ConsumptionItem[],
+    onDeleteItem: (value: string) => void
+}
+
+export const ResultTableComponent: React.FunctionComponent<ResultTableComponentProps> = (props: ResultTableComponentProps) => {
     const {
         consumption_items,
         onDeleteItem
     } = props;
 
-    const handleOnDelete = (id) => {
+    const handleOnDelete = (id: string) => {
         onDeleteItem(id);
     };
 

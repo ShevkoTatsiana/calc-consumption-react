@@ -1,0 +1,5 @@
+mutation DeleteResult($id: ID!) {
+    deleteResult(id: $id) {
+        id
+    }
+}

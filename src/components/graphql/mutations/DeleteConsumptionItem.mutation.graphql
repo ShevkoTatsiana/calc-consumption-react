@@ -1,4 +1,4 @@
-mutation DeleteConsumptionItemMutation($input: id) {
+mutation DeleteConsumptionItemMutation($input: ID!) {
     deleteConsumptionItem(id: $input) {
         id
     }

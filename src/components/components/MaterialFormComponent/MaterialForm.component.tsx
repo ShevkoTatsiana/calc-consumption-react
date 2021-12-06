@@ -1,51 +1,58 @@
-import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import React, {ComponentType, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
-import {useMaterialQuery} from '../../hooks/useMaterialQuery';
-import {LoaderComponent} from '../LoaderComponent/Loader.component';
 
-export function MaterialFormComponent(props) {
+import {MaterialSubmitInput, Material} from '../MaterialsComponent/Materials.component';
+
+interface MaterialInput {
+    area: number,
+    consumption: number,
+    height: number,
+    width?: number,
+    length?: number,
+    price?: number
+}
+
+export interface MaterialFormComponentProps {
+    material: Material,
+    onFormSubmit: (value: MaterialSubmitInput) => void,
+    as?: React.FunctionComponent<MaterialFormComponentProps>
+}
+
+export const MaterialFormComponent: React.FunctionComponent<MaterialFormComponentProps> = (props:MaterialFormComponentProps) => {
     const {onFormSubmit, material} = props;
     const defaultWidth = 3;
-    //let { materialId } = useParams();
-    //const currentMaterial = materials.find((item) => item.name === materialId);
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm<MaterialInput>();
     const [useArea, setUseArea] = useState(true);
     const [showConsump, setConsump] = useState('not calculated yet');
     const [showPrice, setPrice] = useState('not calculated yet');
     const errorMessage = "Please enter a value";
-    //const q = useMaterialQuery(currentMaterial.id);
 
-    //if (q.loading) return <LoaderComponent/>;
-
-    //const {material} = q.data;
-
-    const onCalcMaterial = (data) => {
+    const onCalcMaterial = (data:MaterialInput) => {
         let calcArea;
-        let cons;
-        let total;
+        let cons: string;
+        let total = '';
         const {area, consumption, height, price, ...other} = data;
-        if (!!other.length) {
-            calcArea = (parseFloat(other.length) + parseFloat(other.width));
+        if (!!other.length && !!other.width) {
+            calcArea = other.length + other.width;
         } else {
-            calcArea = (area/defaultWidth + parseFloat(defaultWidth));
+            calcArea = (area/defaultWidth + defaultWidth);
         }
         calcArea = height ? calcArea*2*height : calcArea;
         cons = (calcArea * consumption).toFixed(2);
         setConsump(cons);
 
         if (!!price) {
-            total = (cons*price).toFixed(2);
+            total = (+cons*price).toFixed(2);
             setPrice(total);
         }
         const input = {
             name: material.name,
             area: calcArea,
-            height: parseFloat(height),
-            consumption: parseFloat(consumption),
+            height,
+            consumption,
             general_consumption: parseFloat(cons),
-            coast: parseFloat(total)
+            coast: total
         };
         onFormSubmit(input);
     };
@@ -54,7 +61,7 @@ export function MaterialFormComponent(props) {
         <div className="material-form-component">
             <h2 className="material-form-component-title">Calc consumption of {material.name}</h2>
             <form onSubmit={handleSubmit(onCalcMaterial)}
-                data-testid="material-form">
+                  data-testid="material-form">
                 {useArea ? (
                     <div className="material-form-component-element">
                         <label htmlFor="area"
@@ -62,6 +69,7 @@ export function MaterialFormComponent(props) {
                         <input
                             name="area"
                             placeholder="area"
+                            type="number"
                             ref={register({ required: true })}
                         />
                         {!!errors && errors.area && <span role="alert"
@@ -76,22 +84,24 @@ export function MaterialFormComponent(props) {
                         <input
                             name="width"
                             placeholder="width"
+                            type="number"
                             ref={register({ required: true })}
                         />
                         {!!errors && errors.width && <span role="alert"
-                                                          className="material-form-component-error">
+                                                           className="material-form-component-error">
                         {errorMessage}
                     </span>}
                         <br/>
-                        <label htmlFor="lengthInput"
+                        <label htmlFor="length"
                                className="material-form-component-element-label">Length, m</label>
                         <input
-                            name="lengthInput"
+                            name="length"
                             placeholder="length"
+                            type="number"
                             ref={register({ required: true })}
                         />
-                        {!!errors && errors.lengthInput && <span role="alert"
-                                                          className="material-form-component-error">
+                        {!!errors && errors['length'] && <span role="alert"
+                                                                 className="material-form-component-error">
                         {errorMessage}
                     </span>}
                     </div>
@@ -106,6 +116,7 @@ export function MaterialFormComponent(props) {
                     <input
                         name="height"
                         placeholder="Height"
+                        type="number"
                         ref={register()}
                     />
                 </div>
@@ -115,11 +126,12 @@ export function MaterialFormComponent(props) {
                     <input
                         name="consumption"
                         placeholder="Consumption"
+                        type="number"
                         defaultValue={material.consumption}
                         ref={register({ required: true })}
                     />
                     {!!errors && errors.consumption && <span role="alert"
-                                                      className="material-form-component-error">
+                                                             className="material-form-component-error">
                         {errorMessage}
                     </span>}
                 </div>

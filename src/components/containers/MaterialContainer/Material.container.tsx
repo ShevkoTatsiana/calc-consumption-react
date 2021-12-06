@@ -1,16 +1,24 @@
-import React from 'react';
-import {MaterialFormComponent} from '../../components/MaterialFormComponent/MaterialForm.component';
+import React, {ComponentType} from 'react';
+import {MaterialFormComponent, MaterialFormComponentProps} from '../../components/MaterialFormComponent/MaterialForm.component';
 import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 import {useMaterialQuery} from '../../hooks/useMaterialQuery';
 import {useParams} from 'react-router-dom';
+import {MaterialsComponentProps} from '../../components/MaterialsComponent/Materials.component';
 
-export function MaterialContainer(props) {
+interface MaterialContainerProps extends MaterialsComponentProps {
+    as?: React.FunctionComponent<MaterialFormComponentProps>
+}
+interface ParamTypes {
+    materialId: string;
+}
+
+export const MaterialContainer: React.FunctionComponent<MaterialContainerProps> = (props: MaterialContainerProps) => {
     const {
         as: Component = MaterialFormComponent,
         materials,
         onFormSubmit
     } = props;
-    let { materialId } = useParams();
+    let { materialId }:ParamTypes = useParams<ParamTypes>();
 
     const currentMaterial = materials.find((item) => item.name === materialId);
     const q = useMaterialQuery(currentMaterial?.id);

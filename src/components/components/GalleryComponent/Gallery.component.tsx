@@ -3,7 +3,30 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import {LoaderComponent} from '../LoaderComponent/Loader.component';
 
-export function GalleryComponent(props) {
+interface consumptionItemsType {
+    id: string,
+    name: string,
+    area: number,
+    height: number,
+    consumption: number,
+    general_consumption: number,
+    coast: number
+}
+interface ResultType {
+    id: string,
+    title: string,
+    grand_total: number,
+    consumption_items: consumptionItemsType[]
+}
+
+export interface GalleryComponentProps {
+    gallery: ResultType[],
+    loading?: boolean,
+    onDeleteResult: (value: string) => void,
+    as: React.FunctionComponent<GalleryComponentProps>
+}
+
+export const GalleryComponent: React.FunctionComponent<GalleryComponentProps> = (props:GalleryComponentProps) => {
     const {
         gallery = [],
         loading = false,
@@ -12,7 +35,7 @@ export function GalleryComponent(props) {
 
     if (loading) return <LoaderComponent/>;
 
-    if (!gallery.length) return;
+    if (!gallery.length) return null;
 
     return (
         <div className="gallery-component"

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-export function BackComponent() {
+export const BackComponent: React.FunctionComponent = () => {
 
     return (
         <div className="back-component">

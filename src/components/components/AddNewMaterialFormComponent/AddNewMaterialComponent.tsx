@@ -2,7 +2,13 @@ import React from 'react';
 import {noop} from 'lodash';
 import { useForm } from 'react-hook-form';
 
-export function AddNewMaterialComponent(props) {
+import {AddMaterialInput} from '../MaterialsListComponent/MaterialsList.component';
+
+interface AddNewMaterialComponentProps {
+    onAddMaterial: (data:AddMaterialInput) => void
+}
+
+export const AddNewMaterialComponent : React.FunctionComponent<AddNewMaterialComponentProps> = (props: AddNewMaterialComponentProps) => {
     const {
         onAddMaterial = noop
     } = props;
