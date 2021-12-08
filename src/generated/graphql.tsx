@@ -79,7 +79,7 @@ export type MutationDeleteResultArgs = {
 
 export type MutationUpdateResultArgs = {
   grand_total?: InputMaybe<Scalars['Float']>;
-  id?: InputMaybe<Scalars['ID']>;
+  id: Scalars['ID'];
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -124,8 +124,13 @@ export type AddMaterialMutationMutationVariables = Exact<{
 
 export type AddMaterialMutationMutation = { __typename?: 'Mutation', addMaterial?: { __typename?: 'Material', name: string, consumption?: number | null | undefined } | null | undefined };
 
+export type AddResultMutationMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AddResultMutationMutation = { __typename?: 'Mutation', addResult?: { __typename?: 'Result', id: string } | null | undefined };
+
 export type DeleteConsumptionItemMutationMutationVariables = Exact<{
-  input: Scalars['ID'];
+  id: Scalars['ID'];
 }>;
 
 
@@ -136,7 +141,7 @@ export type DeleteResultMutationVariables = Exact<{
 }>;
 
 
-export type DeleteResultMutation = { __typename?: 'Mutation', deleteResult: { __typename?: 'Result', id: string } | null | undefined };
+export type DeleteResultMutation = { __typename?: 'Mutation', deleteResult?: { __typename?: 'Result', id: string } | null | undefined };
 
 export type GalleryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -237,9 +242,41 @@ export function useAddMaterialMutationMutation(baseOptions?: Apollo.MutationHook
 export type AddMaterialMutationMutationHookResult = ReturnType<typeof useAddMaterialMutationMutation>;
 export type AddMaterialMutationMutationResult = Apollo.MutationResult<AddMaterialMutationMutation>;
 export type AddMaterialMutationMutationOptions = Apollo.BaseMutationOptions<AddMaterialMutationMutation, AddMaterialMutationMutationVariables>;
+export const AddResultMutationDocument = gql`
+    mutation AddResultMutation {
+  addResult {
+    id
+  }
+}
+    `;
+export type AddResultMutationMutationFn = Apollo.MutationFunction<AddResultMutationMutation, AddResultMutationMutationVariables>;
+
+/**
+ * __useAddResultMutationMutation__
+ *
+ * To run a mutation, you first call `useAddResultMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddResultMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addResultMutationMutation, { data, loading, error }] = useAddResultMutationMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAddResultMutationMutation(baseOptions?: Apollo.MutationHookOptions<AddResultMutationMutation, AddResultMutationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddResultMutationMutation, AddResultMutationMutationVariables>(AddResultMutationDocument, options);
+      }
+export type AddResultMutationMutationHookResult = ReturnType<typeof useAddResultMutationMutation>;
+export type AddResultMutationMutationResult = Apollo.MutationResult<AddResultMutationMutation>;
+export type AddResultMutationMutationOptions = Apollo.BaseMutationOptions<AddResultMutationMutation, AddResultMutationMutationVariables>;
 export const DeleteConsumptionItemMutationDocument = gql`
-    mutation DeleteConsumptionItemMutation($input: ID!) {
-  deleteConsumptionItem(id: $input) {
+    mutation DeleteConsumptionItemMutation($id: ID!) {
+  deleteConsumptionItem(id: $id) {
     id
   }
 }
@@ -259,7 +296,7 @@ export type DeleteConsumptionItemMutationMutationFn = Apollo.MutationFunction<De
  * @example
  * const [deleteConsumptionItemMutationMutation, { data, loading, error }] = useDeleteConsumptionItemMutationMutation({
  *   variables: {
- *      input: // value for 'input'
+ *      id: // value for 'id'
  *   },
  * });
  */

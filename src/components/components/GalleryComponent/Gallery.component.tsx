@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import {LoaderComponent} from '../LoaderComponent/Loader.component';
 
-interface consumptionItemsType {
+export interface consumptionItemsType {
     id: string,
     name: string,
     area: number,

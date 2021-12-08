@@ -3,7 +3,7 @@ import {ResultContainer} from '../../containers/ResultContainer/Result.container
 import {EmptyResultComponent} from '../EmptyResultComponent/EmptyResult.component';
 
 interface ResultRouteComponentProps {
-    resultId: String
+    resultId: string
 }
 
 export const ResultRouteComponent: React.FunctionComponent<ResultRouteComponentProps> = ({resultId}: ResultRouteComponentProps) => {

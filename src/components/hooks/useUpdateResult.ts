@@ -44,10 +44,10 @@ const GALLERY = gql` {
 }`;
 
 export function useUpdateResultMutation(opts = {}, mutation=UPDATE_RESULT) {
-    const [updateResultMutation, payload] = useMutation(mutation);
+    const [updateResultMutation, {loading}] = useMutation(mutation);
 
     return [
-        async (id, title, grand_total) => await updateResultMutation({
+        async (id: string, title: string, grand_total: number) => await updateResultMutation({
                 ...opts,
                 variables: {
                     id,
@@ -56,6 +56,6 @@ export function useUpdateResultMutation(opts = {}, mutation=UPDATE_RESULT) {
                 },
             refetchQueries: [{query: RESULT, variables: {id: id}}, {query: GALLERY}]
             }),
-        payload
+        loading
     ];
 }

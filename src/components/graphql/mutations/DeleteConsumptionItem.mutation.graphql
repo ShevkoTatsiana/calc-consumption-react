@@ -1,5 +1,5 @@
-mutation DeleteConsumptionItemMutation($input: ID!) {
-    deleteConsumptionItem(id: $input) {
+mutation DeleteConsumptionItemMutation($id: ID!) {
+    deleteConsumptionItem(id: $id) {
         id
     }
 }

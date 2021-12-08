@@ -6,16 +6,23 @@ import {useUpdateResultMutation} from '../../hooks/useUpdateResult';
 import {useAddResultIdClient} from '../../hooks/useAddResultIdClient';
 import {useDeleteResult} from '../../hooks/useDeleteResult';
 import {LoaderComponent} from "../../components/LoaderComponent/Loader.component";
+import {ResultComponentProps} from '../../components/ResultComponent/Result.component';
+import {consumptionItemsType} from '../../components/GalleryComponent/Gallery.component';
 
-export function ResultContainer(props) {
+interface ResultContainerProps {
+    as?: React.FunctionComponent<ResultComponentProps>,
+    resultId: string
+}
+
+export const ResultContainer: React.FunctionComponent<ResultContainerProps> = (props: ResultContainerProps) => {
     const {
         as: Component = ResultComponent,
         resultId
     } = props;
 
     const q = useResultQuery(resultId);
-    const [deleteConsumptionItem, {loading}] = useDeleteConsumptionItemMutation();
-    const [updateResultMutation, {loading: loadingTotal}] = useUpdateResultMutation();
+    const [deleteConsumptionItem, loading] = useDeleteConsumptionItemMutation();
+    const [updateResultMutation, loadingTotal] = useUpdateResultMutation();
     const [addResultId] = useAddResultIdClient();
     const [deleteResult] = useDeleteResult();
 
@@ -23,16 +30,19 @@ export function ResultContainer(props) {
     if (q.error) return <div>Error</div>;
 
     const {result} = q?.data;
-    const calcGrand = (items) => items.reduce((total, item) => item.coast + total, 0);
+    let resultGrandTotal = 0;
 
-    const resultGrandTotal = !!result && result.consumption_items.length > 0 && calcGrand(result.consumption_items);
-    const onDeleteItem = async (id) => {
+    if(!!result && result.consumption_items.length > 0) {
+        resultGrandTotal = result.consumption_items.reduce((total:number, item:consumptionItemsType) => item.coast + total, 0);
+    }
+    const onDeleteItem = async (id: string) => {
+        if(deleteConsumptionItem===true || deleteConsumptionItem===false) return;
         return await deleteConsumptionItem(id, resultId);
     };
 
-    const onUpdateResult = async (title) => {
-        console.log(title);
+    const onUpdateResult = async (title?: string) => {
         const newTitle = title || result.title || '';
+        if(updateResultMutation===true || updateResultMutation===false) return;
         return await updateResultMutation(resultId, newTitle, resultGrandTotal);
     };
 
@@ -43,7 +53,7 @@ export function ResultContainer(props) {
         await addResultId(null);
     };
 
-    const onAddTitle = (title) => {
+    const onAddTitle = (title: string) => {
         onUpdateResult(title);
     };
 
@@ -54,10 +64,11 @@ export function ResultContainer(props) {
     };
 
     const onDeleteResult = async () => {
+        if(deleteResult===true || deleteResult===false) return;
         await deleteResult(resultId);
         await replaceResultId();
         window.open('/', '_self');
-    };
+     };
 
     return (
         <Component as={ResultComponent}

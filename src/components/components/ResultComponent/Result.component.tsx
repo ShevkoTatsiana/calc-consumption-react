@@ -18,14 +18,15 @@ export interface Result {
     title: string,
     consumption_items: ConsumptionItem[]
 }
-interface ResultComponentProps {
+export interface ResultComponentProps {
     result: Result,
     onDeleteItem: (value: string) => void,
     loading: boolean,
     onSave: () => void,
     resultGrandTotal: number,
     onAddTitle: (value: string) => void,
-    onDeleteResult: () => void
+    onDeleteResult: () => void,
+    as?: React.FunctionComponent<ResultComponentProps>
 }
 
 export const ResultComponent: React.FunctionComponent<ResultComponentProps> = (props: ResultComponentProps) => {
