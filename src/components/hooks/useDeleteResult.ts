@@ -1,5 +1,7 @@
 import {useMutation} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+
+import {DeleteResultMutation,DeleteResultMutationVariables} from '../../generated/graphql';
 export const DELETE_RESULT = gql`
     mutation DeleteResult($id: ID!) {
     deleteResult(id: $id) {
@@ -24,11 +26,11 @@ const GALLERY = gql` {
     }
 }`;
 
-export function useDeleteResult(opts = {}, mutation=DELETE_RESULT) {
-    const [deleteResult, payload] = useMutation(mutation);
+export function useDeleteResult(opts = {variables:{}}, mutation=DELETE_RESULT) {
+    const [deleteResult, {loading}] = useMutation<DeleteResultMutation, DeleteResultMutationVariables>(mutation);
 
     return [
-        async (id) => await deleteResult({
+        async (id: string) => await deleteResult({
             ...opts,
             variables: {
                 ...opts.variables,
@@ -36,6 +38,6 @@ export function useDeleteResult(opts = {}, mutation=DELETE_RESULT) {
             },
             refetchQueries: [{query: GALLERY}]
             }),
-        payload
+        loading
     ];
 }

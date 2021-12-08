@@ -1,0 +1,5 @@
+input ResultInput {
+    consumption_items: [ConsumptionItem]
+    title: String
+    grand_total: Float
+}

@@ -15,23 +15,22 @@ export const GalleryContainer: React.FunctionComponent<GalleryContainerProps> = 
     } = props;
 
     const q = useGalleryQuery();
-    const [deleteResult, data]= useDeleteResult();
+    const [deleteResult, loading]= useDeleteResult();
 
-    // @ts-ignore
-    if (q.loading || data.loading) return <LoaderComponent/>;
+    if (q.loading || loading) return <LoaderComponent/>;
     if (q.error) return <div>Something went wrong</div>;
 
     const {gallery} = q.data;
 
     const onDeleteResult = async (resultId: string) => {
-        // @ts-ignore
+        if (deleteResult === true || deleteResult===false) return;
         await deleteResult(resultId);
     };
 
     return (
         <Component as={GalleryComponent}
                    gallery={gallery}
-                   loading={q.loading || data.loading}
+                   loading={q.loading || loading}
                    onDeleteResult={onDeleteResult}/>
     );
 }

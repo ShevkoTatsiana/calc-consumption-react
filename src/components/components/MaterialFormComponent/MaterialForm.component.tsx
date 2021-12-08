@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 import {MaterialSubmitInput, Material} from '../MaterialsComponent/Materials.component';
 
-interface MaterialInput {
+export interface MaterialInput {
     area: number,
     consumption: number,
     height: number,
@@ -24,14 +24,14 @@ export const MaterialFormComponent: React.FunctionComponent<MaterialFormComponen
     const defaultWidth = 3;
     const { register, handleSubmit, errors } = useForm<MaterialInput>();
     const [useArea, setUseArea] = useState(true);
-    const [showConsump, setConsump] = useState('not calculated yet');
-    const [showPrice, setPrice] = useState('not calculated yet');
+    const [showConsump, setConsump] = useState<string | number>('not calculated yet');
+    const [showPrice, setPrice] = useState<string | number>('not calculated yet');
     const errorMessage = "Please enter a value";
 
     const onCalcMaterial = (data:MaterialInput) => {
-        let calcArea;
-        let cons: string;
-        let total = '';
+        let calcArea: number;
+        let cons: number;
+        let total = 0;
         const {area, consumption, height, price, ...other} = data;
         if (!!other.length && !!other.width) {
             calcArea = other.length + other.width;
@@ -39,19 +39,19 @@ export const MaterialFormComponent: React.FunctionComponent<MaterialFormComponen
             calcArea = (area/defaultWidth + defaultWidth);
         }
         calcArea = height ? calcArea*2*height : calcArea;
-        cons = (calcArea * consumption).toFixed(2);
+        cons = +(calcArea * consumption).toFixed(2);
         setConsump(cons);
 
         if (!!price) {
-            total = (+cons*price).toFixed(2);
+            total = +(+cons*price).toFixed(2);
             setPrice(total);
         }
         const input = {
             name: material.name,
             area: calcArea,
-            height,
-            consumption,
-            general_consumption: parseFloat(cons),
+            height: +height,
+            consumption: +consumption,
+            general_consumption: cons,
             coast: total
         };
         onFormSubmit(input);

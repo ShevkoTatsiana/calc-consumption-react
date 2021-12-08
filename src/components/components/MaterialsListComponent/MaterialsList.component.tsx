@@ -27,7 +27,7 @@ export const MaterialsListComponent: React.FunctionComponent<MaterialsListCompon
     const handleOnAddMaterial = (data: AddMaterialInput) => {
         const {name, consumption} = data;
         setShow(false);
-        onAddMaterial(name, consumption);
+        onAddMaterial(name, +consumption);
     };
 
 

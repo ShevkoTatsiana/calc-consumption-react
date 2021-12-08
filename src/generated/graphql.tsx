@@ -136,7 +136,7 @@ export type DeleteResultMutationVariables = Exact<{
 }>;
 
 
-export type DeleteResultMutation = { __typename?: 'Mutation', deleteResult?: { __typename?: 'Result', id: string } | null | undefined };
+export type DeleteResultMutation = { __typename?: 'Mutation', deleteResult: { __typename?: 'Result', id: string } | null | undefined };
 
 export type GalleryQueryVariables = Exact<{ [key: string]: never; }>;
 

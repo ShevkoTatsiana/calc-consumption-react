@@ -3,10 +3,12 @@ import {MaterialFormComponent, MaterialFormComponentProps} from '../../component
 import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 import {useMaterialQuery} from '../../hooks/useMaterialQuery';
 import {useParams} from 'react-router-dom';
-import {MaterialsComponentProps} from '../../components/MaterialsComponent/Materials.component';
+import {Material, MaterialSubmitInput} from '../../components/MaterialsComponent/Materials.component';
 
-interface MaterialContainerProps extends MaterialsComponentProps {
-    as?: React.FunctionComponent<MaterialFormComponentProps>
+interface MaterialContainerProps {
+    as?: React.FunctionComponent<MaterialFormComponentProps>,
+    materials: Material[],
+    onFormSubmit: (value: MaterialSubmitInput) => void,
 }
 interface ParamTypes {
     materialId: string;

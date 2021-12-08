@@ -44,6 +44,7 @@ export const AddNewMaterialComponent : React.FunctionComponent<AddNewMaterialCom
                     <input
                         name="consumption"
                         placeholder="Consumption"
+                        type="number"
                         id="consumption"
                         ref={register({required: true})}
                     />

@@ -1,11 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-interface MenuPanelComponent {
-    resultId: string
+export interface MenuPanelComponentProps {
+    resultId: string,
+    as?: React.FunctionComponent<MenuPanelComponentProps>
 }
 
-export const MenuPanelComponent: React.FunctionComponent<MenuPanelComponent> = (props: MenuPanelComponent) => {
+export const MenuPanelComponent: React.FunctionComponent<MenuPanelComponentProps> = (props: MenuPanelComponentProps) => {
     const {
         resultId
     } = props;

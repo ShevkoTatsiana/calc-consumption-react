@@ -1,5 +1,4 @@
 import React from 'react';
-import {useHistory} from 'react-router';
 import {ResultComponent} from '../../components/ResultComponent/Result.component';
 import {useResultQuery} from '../../hooks/useResultQuery';
 import {useDeleteConsumptionItemMutation} from '../../hooks/useDeleteConsumptionItem';
@@ -14,7 +13,6 @@ export function ResultContainer(props) {
         resultId
     } = props;
 
-    const history = useHistory();
     const q = useResultQuery(resultId);
     const [deleteConsumptionItem, {loading}] = useDeleteConsumptionItemMutation();
     const [updateResultMutation, {loading: loadingTotal}] = useUpdateResultMutation();
@@ -27,13 +25,13 @@ export function ResultContainer(props) {
     const {result} = q?.data;
     const calcGrand = (items) => items.reduce((total, item) => item.coast + total, 0);
 
-
     const resultGrandTotal = !!result && result.consumption_items.length > 0 && calcGrand(result.consumption_items);
     const onDeleteItem = async (id) => {
         return await deleteConsumptionItem(id, resultId);
     };
 
     const onUpdateResult = async (title) => {
+        console.log(title);
         const newTitle = title || result.title || '';
         return await updateResultMutation(resultId, newTitle, resultGrandTotal);
     };
@@ -52,13 +50,13 @@ export function ResultContainer(props) {
     const onSave = async () => {
         await onUpdateResult();
         await replaceResultId();
-        history.push(`/gallery`);
+        window.open('/gallery', '_self');
     };
 
     const onDeleteResult = async () => {
         await deleteResult(resultId);
         await replaceResultId();
-        history.push(`/`);
+        window.open('/', '_self');
     };
 
     return (

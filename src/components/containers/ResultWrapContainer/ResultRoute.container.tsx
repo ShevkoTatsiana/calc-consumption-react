@@ -2,7 +2,7 @@ import React from 'react';
 import {ResultRouteComponent} from "../../components/ResultRouteComponent/ResultRoute.component";
 import {useResultIdClientQuery} from '../../hooks/useResultIdClientQuery';
 
-export function ResultRouteContainer(props) {
+export function ResultRouteContainer() {
     const {data} = useResultIdClientQuery();
     const resultId = !!data && data.resultID;
 

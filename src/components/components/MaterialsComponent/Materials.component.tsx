@@ -13,11 +13,12 @@ export interface MaterialSubmitInput {
     consumption: number,
     height: number,
     general_consumption: number,
-    coast: string
+    coast: number
 }
 export interface MaterialsComponentProps {
     materials: Material[],
-    onFormSubmit: (value: MaterialSubmitInput) => void
+    onFormSubmit: (value: MaterialSubmitInput) => void,
+    as?: React.FunctionComponent<MaterialsComponentProps>
 }
 export const MaterialsComponent: React.FunctionComponent<MaterialsComponentProps> = (props: MaterialsComponentProps) => {
     const {onFormSubmit, materials} = props;

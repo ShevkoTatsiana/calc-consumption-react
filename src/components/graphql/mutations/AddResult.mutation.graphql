@@ -1,5 +1,5 @@
-mutation AddResultMutation() {
-    addResult() {
+mutation AddResultMutation {
+    addResult {
         id
     }
 }

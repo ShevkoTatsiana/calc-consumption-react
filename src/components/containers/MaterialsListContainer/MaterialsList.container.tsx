@@ -13,10 +13,6 @@ interface MaterialsListContainerProps {
     onAddMaterial: () => void
 }
 
-interface AddMateProp {
-    addMaterialMutation: (name: string, cons: number) => Promise<AddMaterialMutationMutationVariables>
-}
-
 export const MaterialsListContainer: React.FunctionComponent<MaterialsListContainerProps> = (props: MaterialsListContainerProps) => {
     const {
         as: Component = MaterialsListComponent,

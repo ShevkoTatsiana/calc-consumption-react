@@ -9,12 +9,12 @@ const ADD_RESULT = gql`
 `;
 
 export function useAddResultMutation(opts = {}, mutation=ADD_RESULT) {
-    const [addResultMutation, payload] = useMutation(mutation);
+    const [addResultMutation, {loading}] = useMutation(mutation);
 
     return [
         async () => await addResultMutation({
                 ...opts
             }),
-        payload
+        loading
     ];
 }

@@ -11,7 +11,7 @@ type Mutation {
   deleteConsumptionItem(id: ID!): ConsumptionItem
   addResult: Result
   deleteResult(id: ID!): Result
-  updateResult(id: ID, title: String, grand_total: Float): Result,
+  updateResult(id: ID!, title: String, grand_total: Float): Result,
   deleteManyResults: [Result]
 }
 
