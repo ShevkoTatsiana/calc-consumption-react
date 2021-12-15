@@ -6,7 +6,6 @@ import {useAddMaterialMutation} from '../../hooks/useAddMaterial';
 import {MaterialsListComponent} from '../../components/MaterialsListComponent/MaterialsList.component';
 import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 import {MaterialsListComponentProps} from "../../components/MaterialsListComponent/MaterialsList.component";
-import {AddMaterialMutationMutation, AddMaterialMutationMutationVariables} from "../../../generated/graphql";
 
 interface MaterialsListContainerProps {
     as?: React.FunctionComponent<MaterialsListComponentProps>,
