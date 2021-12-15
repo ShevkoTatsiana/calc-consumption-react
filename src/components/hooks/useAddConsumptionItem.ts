@@ -2,8 +2,7 @@ import {useMutation} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import {AddConsumptionItemMutationMutation, AddConsumptionItemMutationMutationVariables} from '../../generated/graphql';
-//import {AddResultData} from '../containers/MaterialsContainer/Materials.container';
-import {MaterialsComponentProps, MaterialSubmitInput} from '../components/MaterialsComponent/Materials.component';
+import {MaterialSubmitInput} from '../components/MaterialsComponent/Materials.component';
 interface AddResultData extends MaterialSubmitInput {
     resultID?: string
 }

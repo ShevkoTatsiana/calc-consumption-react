@@ -1,5 +1,6 @@
 import {useMutation} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import {AddMaterialMutationMutation, AddMaterialMutationMutationVariables} from '../../generated/graphql';
 const ADD_MATERIAL = gql`
     mutation AddMaterial($name:String!, $consumption: Float) {
         addMaterial(name: $name, consumption: $consumption) {
@@ -17,11 +18,11 @@ const MATERIALS = gql` {
 }`;
 
 export function useAddMaterialMutation(opts = {}, mutation=ADD_MATERIAL) {
-    const [addMaterialMutation, payload] = useMutation(mutation);
+    const [addMaterialMutation, payload] = useMutation<AddMaterialMutationMutation,AddMaterialMutationMutationVariables>(mutation);
     const refetchQuery = [{query: MATERIALS}];
 
     return [
-        async (name, consumption) => await addMaterialMutation({
+        async (name:string, consumption:number) => await addMaterialMutation({
                 ...opts,
                 variables: {
                     name,
