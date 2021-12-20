@@ -2,10 +2,11 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-import {ConsumptionItem} from '../ResultComponent/Result.component';
+import {ConsumptionItem} from '../../../generated/graphql';
+import Maybe from "graphql/tsutils/Maybe";
 
 interface ResultTableComponentProps {
-    consumption_items: ConsumptionItem[],
+    consumption_items:  Maybe<ConsumptionItem>[],
     onDeleteItem: (value: string) => void
 }
 
@@ -34,19 +35,21 @@ export const ResultTableComponent: React.FunctionComponent<ResultTableComponentP
                     </tr>
                 </thead>
                 <tbody>
-            {consumption_items.map((item, index) => {
+            {consumption_items?.map((item, index) => {
                 return (
-                    <tr key={item.id}>
+                    <tr key={item?.id}>
                         <td>{index + 1}</td>
-                        <td>{item.name}</td>
-                        <td>{item.area.toFixed(2)}</td>
-                        <td>{item.height}</td>
-                        <td>{item.general_consumption}</td>
-                        <td>{item.coast}</td>
-                        <td>
-                            <Button onClick={()=>handleOnDelete(item.id)}
-                                    className="button button-tertiary">Delete</Button>
-                        </td>
+                        <td>{item?.name}</td>
+                        <td>{item?.area?.toFixed(2)}</td>
+                        <td>{item?.height}</td>
+                        <td>{item?.general_consumption}</td>
+                        <td>{item?.coast}</td>
+                        {item?.id && (
+                            <td>
+                                <Button onClick={()=>handleOnDelete(item.id)}
+                                        className="button button-tertiary">Delete</Button>
+                            </td>
+                        )}
                     </tr>
                 )
             })}

@@ -3,21 +3,22 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {ResultTableComponent} from '../ResultTableComponent/ResultTable.component';
 import {LoaderComponent} from '../LoaderComponent/Loader.component';
+import {Result, ConsumptionItem} from '../../../generated/graphql';
 
-export interface ConsumptionItem {
-    id: string,
-    name: string,
-    area: number,
-    height: number,
-    consumption: number,
-    general_consumption: number,
-    coast: number
-}
-export interface Result {
-    id: string,
-    title: string,
-    consumption_items: ConsumptionItem[]
-}
+// export interface ConsumptionItem {
+//     id: string,
+//     name: string,
+//     area: number,
+//     height: number,
+//     consumption: number,
+//     general_consumption: number,
+//     coast: number
+// }
+// export interface Result {
+//     id: string,
+//     title: string,
+//     consumption_items: ConsumptionItem[]
+// }
 export interface ResultComponentProps {
     result: Result,
     onDeleteItem: (value: string) => void,
@@ -59,8 +60,11 @@ export const ResultComponent: React.FunctionComponent<ResultComponentProps> = (p
             ) : (
                 <h2 className="result-component-title">Result</h2>
             )}
-            <ResultTableComponent consumption_items={consumption_items}
-                                  onDeleteItem={onDeleteItem}/>
+            {!!consumption_items?.length && (
+                <ResultTableComponent consumption_items={consumption_items}
+                                      onDeleteItem={onDeleteItem}/>
+            )}
+
             <div className="result-component-total">
                 <span className="result-component-total-title">Grand Total:</span>
                 {!!resultGrandTotal ? (

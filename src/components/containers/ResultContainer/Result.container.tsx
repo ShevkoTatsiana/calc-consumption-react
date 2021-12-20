@@ -7,7 +7,7 @@ import {useAddResultIdClient} from '../../hooks/useAddResultIdClient';
 import {useDeleteResult} from '../../hooks/useDeleteResult';
 import {LoaderComponent} from "../../components/LoaderComponent/Loader.component";
 import {ResultComponentProps} from '../../components/ResultComponent/Result.component';
-import {consumptionItemsType} from '../../components/GalleryComponent/Gallery.component';
+import {Result, ConsumptionItem} from '../../../generated/graphql';
 
 interface ResultContainerProps {
     as?: React.FunctionComponent<ResultComponentProps>,
@@ -33,7 +33,10 @@ export const ResultContainer: React.FunctionComponent<ResultContainerProps> = (p
     let resultGrandTotal = 0;
 
     if(!!result && result.consumption_items.length > 0) {
-        resultGrandTotal = result.consumption_items.reduce((total:number, item:consumptionItemsType) => item.coast + total, 0);
+        resultGrandTotal = result.consumption_items.reduce((total:number, item:ConsumptionItem) => {
+            if (!item?.coast) return total;
+            return item?.coast + total;
+        }, 0);
     }
     const onDeleteItem = async (id: string) => {
         if(deleteConsumptionItem===true || deleteConsumptionItem===false) return;

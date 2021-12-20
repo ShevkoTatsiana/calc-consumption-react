@@ -4,16 +4,6 @@ import Table from 'react-bootstrap/Table';
 import {LoaderComponent} from '../LoaderComponent/Loader.component';
 import {Result} from '../../../generated/graphql';
 
-export interface consumptionItemsType {
-    id: string,
-    name: string,
-    area: number,
-    height: number,
-    consumption: number,
-    general_consumption: number,
-    coast: number
-}
-
 export interface GalleryComponentProps {
     gallery: Result[],
     loading?: boolean,

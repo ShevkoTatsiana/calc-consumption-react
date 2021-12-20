@@ -1,9 +1,10 @@
-import React, {ComponentType} from 'react';
+import React from 'react';
 import {MaterialFormComponent, MaterialFormComponentProps} from '../../components/MaterialFormComponent/MaterialForm.component';
 import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 import {useMaterialQuery} from '../../hooks/useMaterialQuery';
 import {useParams} from 'react-router-dom';
-import {Material, MaterialSubmitInput} from '../../components/MaterialsComponent/Materials.component';
+import {MaterialSubmitInput} from '../../components/MaterialsComponent/Materials.component';
+import {Material} from '../../../generated/graphql';
 
 interface MaterialContainerProps {
     as?: React.FunctionComponent<MaterialFormComponentProps>,

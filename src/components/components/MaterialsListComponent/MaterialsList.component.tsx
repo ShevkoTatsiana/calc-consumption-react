@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {AddNewMaterialComponent} from '../AddNewMaterialFormComponent/AddNewMaterialComponent';
 
-import {Material} from '../MaterialsComponent/Materials.component';
+import {Material} from '../../../generated/graphql';
 
 export interface AddMaterialInput {
     name: string,

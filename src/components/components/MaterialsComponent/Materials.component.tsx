@@ -1,12 +1,8 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import {MaterialContainer} from '../../containers/MaterialContainer/Material.container';
+import {Material} from '../../../generated/graphql';
 
-export interface Material {
-    id: string,
-    name: string,
-    consumption?: number
-}
 export interface MaterialSubmitInput {
     name: string,
     area: number,
@@ -20,6 +16,7 @@ export interface MaterialsComponentProps {
     onFormSubmit: (value: MaterialSubmitInput) => void,
     as?: React.FunctionComponent<MaterialsComponentProps>
 }
+
 export const MaterialsComponent: React.FunctionComponent<MaterialsComponentProps> = (props: MaterialsComponentProps) => {
     const {onFormSubmit, materials} = props;
 

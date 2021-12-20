@@ -1,7 +1,6 @@
 import React from 'react';
 import type {ComponentType} from 'react';
 import {
-    consumptionItemsType,
     GalleryComponent,
     GalleryComponentProps
 } from '../../components/GalleryComponent/Gallery.component';
