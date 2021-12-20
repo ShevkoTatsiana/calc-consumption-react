@@ -1,5 +1,6 @@
 import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import {MaterialsQuery, MaterialsQueryVariables} from '../../generated/graphql';
 //import MATERIALS from '../graphql/queries/MaterialsListComponent.query.graphql';
 export const MATERIALS = gql` {
     materials {
@@ -9,5 +10,5 @@ export const MATERIALS = gql` {
     }
 }`;
 export function useMaterialsQuery(query=MATERIALS, options={}) {
-    return useQuery(query, options)
+    return useQuery<MaterialsQuery,MaterialsQueryVariables>(query, options)
 }

@@ -2,7 +2,8 @@ import React, {ComponentType, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import Button from 'react-bootstrap/Button';
 
-import {MaterialSubmitInput, Material} from '../MaterialsComponent/Materials.component';
+import {MaterialSubmitInput} from '../MaterialsComponent/Materials.component';
+import {Material} from '../../../generated/graphql';
 
 export interface MaterialInput {
     area: number,
@@ -127,7 +128,7 @@ export const MaterialFormComponent: React.FunctionComponent<MaterialFormComponen
                         name="consumption"
                         placeholder="Consumption"
                         type="number"
-                        defaultValue={material.consumption}
+                        defaultValue={!!material.consumption ? material.consumption : ''}
                         ref={register({ required: true })}
                     />
                     {!!errors && errors.consumption && <span role="alert"

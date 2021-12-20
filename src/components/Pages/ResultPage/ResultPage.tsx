@@ -2,7 +2,7 @@ import React from 'react';
 import {BackComponent} from '../../components/BackComponent/BackComponent';
 import {ResultRouteContainer} from '../../containers/ResultWrapContainer/ResultRoute.container';
 
-export function ResultPage() {
+export const ResultPage: React.FunctionComponent = () => {
 
     return (
         <div className="result-page">

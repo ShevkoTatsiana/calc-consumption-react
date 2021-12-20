@@ -1,0 +1,6 @@
+type Result {
+    id: ID!
+    consumption_items: [ConsumptionItem]
+    title: String
+    grand_total: Float
+}

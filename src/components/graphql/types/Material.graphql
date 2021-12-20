@@ -1,0 +1,5 @@
+type Material {
+    id: ID!
+    name: String!
+    consumption: Float
+}

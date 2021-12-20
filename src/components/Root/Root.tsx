@@ -3,7 +3,7 @@ import {App} from '../App/App';
 
 import {ApolloProviderComponent} from '../components/ApolloProvider.component/ApolloProvider.component';
 
-export function Root() {
+export const Root: React.FunctionComponent = () => {
   return (
       <ApolloProviderComponent>
           <App/>

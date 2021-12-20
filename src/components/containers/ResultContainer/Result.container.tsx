@@ -28,7 +28,7 @@ export const ResultContainer: React.FunctionComponent<ResultContainerProps> = (p
 
     if (q.loading || loading || loadingTotal) return <LoaderComponent/>;
     if (q.error) return <div>Error</div>;
-
+    // @ts-ignore
     const {result} = q?.data;
     let resultGrandTotal = 0;
 

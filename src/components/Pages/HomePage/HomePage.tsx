@@ -2,7 +2,7 @@ import React from 'react';
 import {MaterialsListContainer} from '../../containers/MaterialsListContainer/MaterialsList.container';
 import {MenuPanelContainer} from '../../containers/MenuPanelContainer/MenuPanel.container';
 
-export function HomePage() {
+export const HomePage: React.FunctionComponent = () => {
 
     return (
         <div className="home-page">

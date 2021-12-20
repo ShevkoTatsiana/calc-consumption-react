@@ -1,5 +1,6 @@
 import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import {ResultQuery, ResultQueryVariables} from '../../generated/graphql';
 export const RESULT = gql`
     query Result($id:ID) {
     result(id: $id) {
@@ -18,8 +19,8 @@ export const RESULT = gql`
     }
 }
 `;
-export function useResultQuery(id, query=RESULT, options={}) {
-    return useQuery(query, {
+export function useResultQuery(id: string, query=RESULT, options={}) {
+    return useQuery<ResultQuery,ResultQueryVariables>(query, {
         variables: {id},
         ...options
     });

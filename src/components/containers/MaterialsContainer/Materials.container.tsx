@@ -11,7 +11,7 @@ import {useMaterialsQuery} from '../../hooks/useMaterialsQuery';
 import {MaterialsComponentProps, MaterialSubmitInput} from '../../components/MaterialsComponent/Materials.component';
 
 interface MaterialsContainerProps {
-    as: React.FunctionComponent<MaterialsComponentProps>
+    as?: React.FunctionComponent<MaterialsComponentProps>
 }
 
 export interface AddResultData extends MaterialSubmitInput {

@@ -1,0 +1,9 @@
+extend type Mutation {
+    addMaterial(name: String!, consumption: Float): Material
+    addConsumptionItem(input: ConsumptionInput): ConsumptionItem
+    deleteConsumptionItem(id: ID!): ConsumptionItem
+    addResult: Result
+    deleteResult(id: ID!): Result
+    updateResult(id: ID!, title: String, grand_total: Float): Result,
+    deleteManyResults: [Result]
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import {LoaderComponent} from '../LoaderComponent/Loader.component';
+import {Result} from '../../../generated/graphql';
 
 export interface consumptionItemsType {
     id: string,
@@ -12,15 +13,9 @@ export interface consumptionItemsType {
     general_consumption: number,
     coast: number
 }
-interface ResultType {
-    id: string,
-    title: string,
-    grand_total: number,
-    consumption_items: consumptionItemsType[]
-}
 
 export interface GalleryComponentProps {
-    gallery: ResultType[],
+    gallery: Result[],
     loading?: boolean,
     onDeleteResult: (value: string) => void,
     as: React.FunctionComponent<GalleryComponentProps>
@@ -53,12 +48,12 @@ export const GalleryComponent: React.FunctionComponent<GalleryComponentProps> = 
                             </tr>
                         </thead>
                         <tbody>
-                            {result.consumption_items.map((item) => (
-                                <tr key={item.id}>
-                                    <td>{item.name}</td>
-                                    <td>{item.area.toFixed(2)}m2</td>
-                                    <td>{item.general_consumption}</td>
-                                    <td>{item.coast}</td>
+                            {result.consumption_items?.map((item) => (
+                                <tr key={item?.id}>
+                                    <td>{item?.name}</td>
+                                    <td>{item?.area?.toFixed(2)}m2</td>
+                                    <td>{item?.general_consumption}</td>
+                                    <td>{item?.coast}</td>
                                 </tr>
                             ))}
                             {result.grand_total && (

@@ -27,6 +27,7 @@ export const MaterialContainer: React.FunctionComponent<MaterialContainerProps> 
 
     if (q.loading) return <LoaderComponent/>;
     if (q.error) return <div>Something went wrong</div>;
+    if(!q.data || !q.data.material) return <div>There is no material</div>;
 
     const {material} = q?.data;
 

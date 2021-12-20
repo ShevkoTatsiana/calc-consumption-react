@@ -9,7 +9,7 @@ import {MaterialsListComponentProps} from "../../components/MaterialsListCompone
 
 interface MaterialsListContainerProps {
     as?: React.FunctionComponent<MaterialsListComponentProps>,
-    onAddMaterial: () => void
+    onAddMaterial?: () => void
 }
 
 export const MaterialsListContainer: React.FunctionComponent<MaterialsListContainerProps> = (props: MaterialsListContainerProps) => {

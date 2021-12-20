@@ -1,0 +1,6 @@
+extend type Query {
+    materials: [Material]
+    material(id: ID): Material
+    result(id: ID): Result
+    gallery: [Result]
+}
