@@ -26,7 +26,7 @@ export const MaterialsListContainer: React.FunctionComponent<MaterialsListContai
 
     const materials = get(q, 'data.materials');
     const handleOnAddMaterial = async (name:string, consumption: number) => {
-        // @ts-ignore
+        if (addMaterialMutation === true || addMaterialMutation===false) return;
         const resp =  await addMaterialMutation(name, consumption);
         onAddMaterial();
         return resp;

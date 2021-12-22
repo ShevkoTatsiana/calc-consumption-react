@@ -1,5 +1,5 @@
 import React from 'react';
-import type {ComponentType} from 'react';
+
 import {
     GalleryComponent,
     GalleryComponentProps
@@ -7,7 +7,6 @@ import {
 import {LoaderComponent} from '../../components/LoaderComponent/Loader.component';
 import {useGalleryQuery} from '../../hooks/useGalleryQuery';
 import {useDeleteResult} from '../../hooks/useDeleteResult';
-import {GalleryQuery, Result} from '../../../generated/graphql';
 
 interface GalleryContainerProps {
     as?: React.FunctionComponent<GalleryComponentProps>
@@ -23,12 +22,9 @@ export const GalleryContainer: React.FunctionComponent<GalleryContainerProps> = 
 
     if (q.loading || loading) return <LoaderComponent/>;
     if (q.error) return <div>Something went wrong</div>;
-    if(!q.data) return null;
+    if(!q.data || !q.data.gallery) return <div>There are no items yet</div>;
 
-    let gallery:Result[];
-    // @ts-ignore
-    gallery = q?.data?.gallery;
-
+    const gallery = q?.data?.gallery;
 
     const onDeleteResult = async (resultId: string) => {
         if (deleteResult === true || deleteResult===false) return;

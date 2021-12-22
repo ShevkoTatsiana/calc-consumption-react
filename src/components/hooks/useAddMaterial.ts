@@ -18,7 +18,7 @@ const MATERIALS = gql` {
 }`;
 
 export function useAddMaterialMutation(opts = {}, mutation=ADD_MATERIAL) {
-    const [addMaterialMutation, payload] = useMutation<AddMaterialMutationMutation,AddMaterialMutationMutationVariables>(mutation);
+    const [addMaterialMutation, {loading}] = useMutation<AddMaterialMutationMutation,AddMaterialMutationMutationVariables>(mutation);
     const refetchQuery = [{query: MATERIALS}];
 
     return [
@@ -30,6 +30,6 @@ export function useAddMaterialMutation(opts = {}, mutation=ADD_MATERIAL) {
                 },
                 refetchQueries: () => refetchQuery
             }),
-        payload
+        loading
     ];
 }

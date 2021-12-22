@@ -1,4 +1,5 @@
 import React from 'react';
+import {isEmpty} from 'lodash';
 import {ResultComponent} from '../../components/ResultComponent/Result.component';
 import {useResultQuery} from '../../hooks/useResultQuery';
 import {useDeleteConsumptionItemMutation} from '../../hooks/useDeleteConsumptionItem';
@@ -28,12 +29,14 @@ export const ResultContainer: React.FunctionComponent<ResultContainerProps> = (p
 
     if (q.loading || loading || loadingTotal) return <LoaderComponent/>;
     if (q.error) return <div>Error</div>;
-    // @ts-ignore
-    const {result} = q?.data;
+    if(!q.data || !q.data.result) return <div>There is no result</div>;
+
+    const result= q?.data?.result;
+
     let resultGrandTotal = 0;
 
-    if(!!result && result.consumption_items.length > 0) {
-        resultGrandTotal = result.consumption_items.reduce((total:number, item:ConsumptionItem) => {
+    if(!!result?.consumption_items && result?.consumption_items.length > 0) {
+        resultGrandTotal = result.consumption_items.reduce((total, item) => {
             if (!item?.coast) return total;
             return item?.coast + total;
         }, 0);

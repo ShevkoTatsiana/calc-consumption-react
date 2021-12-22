@@ -5,20 +5,6 @@ import {ResultTableComponent} from '../ResultTableComponent/ResultTable.componen
 import {LoaderComponent} from '../LoaderComponent/Loader.component';
 import {Result, ConsumptionItem} from '../../../generated/graphql';
 
-// export interface ConsumptionItem {
-//     id: string,
-//     name: string,
-//     area: number,
-//     height: number,
-//     consumption: number,
-//     general_consumption: number,
-//     coast: number
-// }
-// export interface Result {
-//     id: string,
-//     title: string,
-//     consumption_items: ConsumptionItem[]
-// }
 export interface ResultComponentProps {
     result: Result,
     onDeleteItem: (value: string) => void,

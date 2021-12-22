@@ -5,7 +5,7 @@ import {LoaderComponent} from '../LoaderComponent/Loader.component';
 import {Result} from '../../../generated/graphql';
 
 export interface GalleryComponentProps {
-    gallery: Result[],
+    gallery: (Result | undefined | null)[],
     loading?: boolean,
     onDeleteResult: (value: string) => void,
     as: React.FunctionComponent<GalleryComponentProps>
@@ -26,8 +26,8 @@ export const GalleryComponent: React.FunctionComponent<GalleryComponentProps> = 
         <div className="gallery-component"
              data-testid="gallery-component">
             {gallery.map((result, index) => (
-                <div key={result.id}>
-                    <h2>Result {index} {result.title}</h2>
+                <div key={result?.id}>
+                    <h2>Result {index} {result?.title}</h2>
                     <Table className="gallery-component-result">
                         <thead>
                             <tr>
@@ -38,7 +38,7 @@ export const GalleryComponent: React.FunctionComponent<GalleryComponentProps> = 
                             </tr>
                         </thead>
                         <tbody>
-                            {result.consumption_items?.map((item) => (
+                            {result?.consumption_items?.map((item) => (
                                 <tr key={item?.id}>
                                     <td>{item?.name}</td>
                                     <td>{item?.area?.toFixed(2)}m2</td>
@@ -46,14 +46,16 @@ export const GalleryComponent: React.FunctionComponent<GalleryComponentProps> = 
                                     <td>{item?.coast}</td>
                                 </tr>
                             ))}
-                            {result.grand_total && (
-                                <tr><td>Grand Total</td><td>{result.grand_total}</td></tr>
+                            {result?.grand_total && (
+                                <tr><td>Grand Total</td><td>{result?.grand_total}</td></tr>
                             )}
                         </tbody>
                     </Table>
-                    <Button onClick={() => onDeleteResult(result.id)}
-                            type="button"
-                            className="button button-tertiary">Delete Result</Button>
+                    {result?.id && (
+                        <Button onClick={() => onDeleteResult(result.id)}
+                                type="button"
+                                className="button button-tertiary">Delete Result</Button>
+                    )}
                 </div>
             ))}
         </div>
